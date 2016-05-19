@@ -28,7 +28,7 @@ void main() {
     float sdfdist = mix(sdfdist_a, sdfdist_b, u_mix);
     alpha *= smoothstep(0.5 - u_sdfgamma, 0.5 + u_sdfgamma, sdfdist);
 
-    gl_FragColor = u_color * (alpha * u_opacity);
+    gl_FragColor = premultiply(u_color) * (alpha * u_opacity);
 
 #ifdef OVERDRAW_INSPECTOR
     gl_FragColor = vec4(1.0);

@@ -1,6 +1,5 @@
 'use strict';
 
-var util = require('../util/util');
 var pixelsToTileUnits = require('../source/pixels_to_tile_units');
 
 module.exports = draw;
@@ -9,9 +8,9 @@ function draw(painter, source, layer, coords) {
     var gl = painter.gl;
     gl.enable(gl.STENCIL_TEST);
 
-    var color = util.premultiply(layer.paint['fill-color']);
+    var color = layer.paint['fill-color'];
     var image = layer.paint['fill-pattern'];
-    var strokeColor = util.premultiply(layer.paint['fill-outline-color']);
+    var strokeColor = layer.paint['fill-outline-color'];
     var opacity = layer.paint['fill-opacity'];
 
     // Draw fill
@@ -80,7 +79,7 @@ function drawFill(painter, source, layer, coord) {
 
     var gl = painter.gl;
 
-    var color = util.premultiply(layer.paint['fill-color']);
+    var color = layer.paint['fill-color'];
     var image = layer.paint['fill-pattern'];
     var opacity = layer.paint['fill-opacity'];
     var program;

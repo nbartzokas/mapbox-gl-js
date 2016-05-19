@@ -18,7 +18,7 @@ void main() {
     float blur = u_blur * v_gamma_scale;
     float alpha = clamp(min(dist - (v_linewidth.t - blur), v_linewidth.s - dist) / blur, 0.0, 1.0);
 
-    gl_FragColor = u_color * (alpha * u_opacity);
+    gl_FragColor = premultiply(u_color) * (alpha * u_opacity);
 
 #ifdef OVERDRAW_INSPECTOR
     gl_FragColor = vec4(1.0);

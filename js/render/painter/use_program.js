@@ -61,6 +61,8 @@ var definitions = {
     }
 };
 
+var sharedSource = fs.readFileSync(path.join(__dirname, '../../../shaders/shared.glsl'), 'utf8');
+
 module.exports._createProgram = function(name, macros) {
     var gl = this.gl;
     var program = gl.createProgram();
@@ -74,13 +76,13 @@ module.exports._createProgram = function(name, macros) {
     }
 
     var fragmentShader = gl.createShader(gl.FRAGMENT_SHADER);
-    gl.shaderSource(fragmentShader, defines + definition.fragmentSource);
+    gl.shaderSource(fragmentShader, defines + sharedSource + definition.fragmentSource);
     gl.compileShader(fragmentShader);
     assert(gl.getShaderParameter(fragmentShader, gl.COMPILE_STATUS), gl.getShaderInfoLog(fragmentShader));
     gl.attachShader(program, fragmentShader);
 
     var vertexShader = gl.createShader(gl.VERTEX_SHADER);
-    gl.shaderSource(vertexShader, defines + definition.vertexSource);
+    gl.shaderSource(vertexShader, defines + sharedSource + definition.vertexSource);
     gl.compileShader(vertexShader);
     assert(gl.getShaderParameter(vertexShader, gl.COMPILE_STATUS), gl.getShaderInfoLog(vertexShader));
     gl.attachShader(program, vertexShader);
