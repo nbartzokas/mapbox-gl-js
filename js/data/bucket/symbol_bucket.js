@@ -14,6 +14,8 @@ var clipLine = require('../../symbol/clip_line');
 var util = require('../../util/util');
 var loadGeometry = require('../load_geometry');
 var CollisionFeature = require('../../symbol/collision_feature');
+var SymbolInstancesArray = require('../../symbol/symbol_instances');
+var SymbolQuadsArray = require('../../symbol/symbol_quads');
 
 var shapeText = Shaping.shapeText;
 var shapeIcon = Shaping.shapeIcon;
@@ -131,6 +133,7 @@ SymbolBucket.prototype.programInterfaces = {
     }
 };
 
+
 SymbolBucket.prototype.populateBuffers = function(collisionTile, stacks, icons) {
 
     // To reduce the number of labels that jump around when zooming we need
@@ -147,6 +150,8 @@ SymbolBucket.prototype.populateBuffers = function(collisionTile, stacks, icons) 
     this.tilePixelRatio = EXTENT / tileSize;
     this.compareText = {};
     this.symbolInstances = [];
+    this.symbolInstancesBuffer = new SymbolInstancesArray();
+    this.symbolQuadsBuffer = new SymbolQuadsArray();
     this.iconsNeedLinear = false;
 
     var layout = this.layer.layout;
@@ -327,6 +332,12 @@ SymbolBucket.prototype.addFeature = function(lines, shapedText, shapedIcon, feat
                         iconBoxScale, iconPadding, iconAlongLine));
         }
     }
+
+    var addSymbolInstance = this.addSymbolInstance.bind(this);
+    this.symbolInstances.forEach(function(instance) {
+        addSymbolInstance(instance);
+    });
+
 };
 
 SymbolBucket.prototype.anchorIsTooClose = function(text, repeatDistance, anchor) {
@@ -558,3 +569,62 @@ function SymbolInstance(anchor, line, shapedText, shapedIcon, layout, addToBuffe
                 shapedIcon, iconBoxScale, iconPadding, iconAlongLine, true);
     }
 }
+
+SymbolBucket.prototype.addSymbolInstance = function(symbolInstance) {
+    var startGlyphIndex, endGlyphIndex, iconQuadIndex;
+    var quads = symbolInstance.glyphQuads.length ? symbolInstance.glyphQuads : [];
+    for (var i = 0; i < quads.length; i++) {
+        if (i === 0) {
+            startGlyphIndex = this.addSymbolQuad(quads[i]);
+        } else if (i === quads.length - 1) {
+            endGlyphIndex = this.addSymbolQuad(quads[i]);
+        } else {
+            this.addSymbolQuad(quads[i]);
+        }
+    }
+
+    if (symbolInstance.iconQuads && symbolInstance.iconQuads.length === 1) {
+        iconQuadIndex = this.addSymbolQuad(symbolInstance[0]);
+    }
+    // console.log(iconQuadIndex,startGlyphIndex || -1,
+    //     endGlyphIndex || -1,
+    //     iconQuadIndex || -1,
+    //     symbolInstance.x,
+    //     symbolInstance.y,
+    //     symbolInstance.index);
+
+    return this.symbolInstancesBuffer.emplaceBack(
+        startGlyphIndex || -1,
+        endGlyphIndex || -1,
+        iconQuadIndex || -1,
+        symbolInstance.x,
+        symbolInstance.y,
+        symbolInstance.index);
+
+};
+
+SymbolBucket.prototype.addSymbolQuad = function(symbolQuad) {
+    return this.symbolQuadsBuffer.emplaceBack(
+        // anchorPoints
+        symbolQuad.anchorPoint.x,
+        symbolQuad.anchorPoint.y,
+        // corners
+        symbolQuad.tl.x,
+        symbolQuad.tl.y,
+        symbolQuad.tr.x,
+        symbolQuad.tr.y,
+        symbolQuad.bl.x,
+        symbolQuad.bl.y,
+        symbolQuad.br.x,
+        symbolQuad.br.y,
+        // texture
+        symbolQuad.tex.h,
+        symbolQuad.tex.w,
+        symbolQuad.tex.x,
+        symbolQuad.tex.y,
+        //angle
+        symbolQuad.angle,
+        // scales
+        symbolQuad.minScale,
+        symbolQuad.maxScale);
+};
