@@ -133,7 +133,6 @@ SymbolBucket.prototype.programInterfaces = {
     }
 };
 
-
 SymbolBucket.prototype.populateBuffers = function(collisionTile, stacks, icons) {
 
     // To reduce the number of labels that jump around when zooming we need
@@ -572,7 +571,7 @@ function SymbolInstance(anchor, line, shapedText, shapedIcon, layout, addToBuffe
 
 SymbolBucket.prototype.addSymbolInstance = function(symbolInstance) {
     var startGlyphIndex, endGlyphIndex, iconQuadIndex;
-    var quads = symbolInstance.glyphQuads.length ? symbolInstance.glyphQuads : [];
+    var quads = symbolInstance.glyphQuads ? symbolInstance.glyphQuads : [];
     for (var i = 0; i < quads.length; i++) {
         if (i === 0) {
             startGlyphIndex = this.addSymbolQuad(quads[i]);
@@ -584,14 +583,8 @@ SymbolBucket.prototype.addSymbolInstance = function(symbolInstance) {
     }
 
     if (symbolInstance.iconQuads && symbolInstance.iconQuads.length === 1) {
-        iconQuadIndex = this.addSymbolQuad(symbolInstance[0]);
+        iconQuadIndex = this.addSymbolQuad(symbolInstance.iconQuads[0]);
     }
-    // console.log(iconQuadIndex,startGlyphIndex || -1,
-    //     endGlyphIndex || -1,
-    //     iconQuadIndex || -1,
-    //     symbolInstance.x,
-    //     symbolInstance.y,
-    //     symbolInstance.index);
 
     return this.symbolInstancesBuffer.emplaceBack(
         startGlyphIndex || -1,

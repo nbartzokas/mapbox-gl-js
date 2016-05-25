@@ -46,8 +46,6 @@ var SymbolQuadsArray = module.exports = new StructArrayType({
         // quad is only valid for scales < maxScale && scale > minScale.
         { type: 'Float32', name: 'maxScale' },
         { type: 'Float32', name: 'minScale' }
-
-
     ]
 });
 

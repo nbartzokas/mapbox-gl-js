@@ -4,9 +4,6 @@ var StructArrayType = require('../util/struct_array');
 var util = require('../util/util');
 var Point = require('point-geometry');
 
-// notes from ansis on slack:
-// it would be best if they are added to a buffer in advance so that they are only created once. There would be a separate buffer with all the individual collision boxes and then SymbolInstance would store the beginning and end indexes of a feature's collisionboxes. CollisionFeature wouldn't really exist as a standalone thing, it would just be a range of boxes in the big collision box buffer
-
 /*
 *
 * A StructArray implementation of symbolInstances from data/bucket/symbol_bucket.js

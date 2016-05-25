@@ -207,6 +207,8 @@ WorkerTile.prototype.parse = function(data, layerFamilies, actor, rawTileData, c
         var featureIndex_ = featureIndex.serialize();
         var collisionTile_ = collisionTile.serialize();
         var collisionBoxArray = tile.collisionBoxArray.serialize();
+        // var symbolInstancesBuffer = tile.symbolInstancesBuffer.serialize();
+        // var symbolQuadsBuffer = tile.symbolQuadsBuffer.serialize();
         var transferables = [rawTileData].concat(featureIndex_.transferables).concat(collisionTile_.transferables);
 
         var nonEmptyBuckets = buckets.filter(isBucketEmpty);
