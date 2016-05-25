@@ -14,8 +14,6 @@ var clipLine = require('../../symbol/clip_line');
 var util = require('../../util/util');
 var loadGeometry = require('../load_geometry');
 var CollisionFeature = require('../../symbol/collision_feature');
-var SymbolInstancesArray = require('../../symbol/symbol_instances');
-var SymbolQuadsArray = require('../../symbol/symbol_quads');
 
 var shapeText = Shaping.shapeText;
 var shapeIcon = Shaping.shapeIcon;
@@ -31,6 +29,8 @@ function SymbolBucket(options) {
     this.showCollisionBoxes = options.showCollisionBoxes;
     this.overscaling = options.overscaling;
     this.collisionBoxArray = options.collisionBoxArray;
+    this.symbolQuadsBuffer = options.symbolQuadsBuffer;
+    this.symbolInstancesBuffer = options.symbolInstancesBuffer;
 
     this.sdfIcons = options.sdfIcons;
     this.iconsNeedLinear = options.iconsNeedLinear;
@@ -149,8 +149,8 @@ SymbolBucket.prototype.populateBuffers = function(collisionTile, stacks, icons) 
     this.tilePixelRatio = EXTENT / tileSize;
     this.compareText = {};
     this.symbolInstances = [];
-    this.symbolInstancesBuffer = new SymbolInstancesArray();
-    this.symbolQuadsBuffer = new SymbolQuadsArray();
+    // this.symbolInstancesBuffer = new SymbolInstancesArray();
+    // this.symbolQuadsBuffer = new SymbolQuadsArray();
     this.iconsNeedLinear = false;
 
     var layout = this.layer.layout;
