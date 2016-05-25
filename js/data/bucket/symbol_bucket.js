@@ -579,6 +579,8 @@ SymbolBucket.prototype.addSymbolInstance = function(symbolInstance) {
         }
     }
 
+    // if I'm understanding correctly, each symbol instance would only ever have one icon,
+    // so saving the index of the first iconQuads element is the correct approach - @mollymerp
     if (symbolInstance.iconQuads && symbolInstance.iconQuads.length === 1) {
         iconQuadIndex = this.addSymbolQuad(symbolInstance.iconQuads[0]);
     }
