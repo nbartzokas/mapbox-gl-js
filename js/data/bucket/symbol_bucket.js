@@ -29,8 +29,8 @@ function SymbolBucket(options) {
     this.showCollisionBoxes = options.showCollisionBoxes;
     this.overscaling = options.overscaling;
     this.collisionBoxArray = options.collisionBoxArray;
-    this.symbolQuadsBuffer = options.symbolQuadsBuffer;
-    this.symbolInstancesBuffer = options.symbolInstancesBuffer;
+    this.symbolQuadsArray = options.symbolQuadsArray;
+    this.symbolInstancesArray = options.symbolInstancesArray;
 
     this.sdfIcons = options.sdfIcons;
     this.iconsNeedLinear = options.iconsNeedLinear;
@@ -149,8 +149,6 @@ SymbolBucket.prototype.populateBuffers = function(collisionTile, stacks, icons) 
     this.tilePixelRatio = EXTENT / tileSize;
     this.compareText = {};
     this.symbolInstances = [];
-    // this.symbolInstancesBuffer = new SymbolInstancesArray();
-    // this.symbolQuadsBuffer = new SymbolQuadsArray();
     this.iconsNeedLinear = false;
 
     var layout = this.layer.layout;
@@ -332,10 +330,9 @@ SymbolBucket.prototype.addFeature = function(lines, shapedText, shapedIcon, feat
         }
     }
 
-    var addSymbolInstance = this.addSymbolInstance.bind(this);
-    this.symbolInstances.forEach(function(instance) {
-        addSymbolInstance(instance);
-    });
+    for (var k = 0; k < this.symbolInstances.length; k++) {
+        this.addSymbolInstance(this.symbolInstances[k]);
+    }
 
 };
 
@@ -586,7 +583,7 @@ SymbolBucket.prototype.addSymbolInstance = function(symbolInstance) {
         iconQuadIndex = this.addSymbolQuad(symbolInstance.iconQuads[0]);
     }
 
-    return this.symbolInstancesBuffer.emplaceBack(
+    return this.symbolInstancesArray.emplaceBack(
         startGlyphIndex || -1,
         endGlyphIndex || -1,
         iconQuadIndex || -1,
@@ -597,7 +594,7 @@ SymbolBucket.prototype.addSymbolInstance = function(symbolInstance) {
 };
 
 SymbolBucket.prototype.addSymbolQuad = function(symbolQuad) {
-    return this.symbolQuadsBuffer.emplaceBack(
+    return this.symbolQuadsArray.emplaceBack(
         // anchorPoints
         symbolQuad.anchorPoint.x,
         symbolQuad.anchorPoint.y,
