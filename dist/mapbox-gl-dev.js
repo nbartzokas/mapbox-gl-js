@@ -1,12 +1,12 @@
-(function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.mapboxgl = f()}})(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+(function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.mapboxgl = f()}})(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(_dereq_,module,exports){
 'use strict';
 
-var featureFilter = require('feature-filter');
-var Buffer = require('./buffer');
-var util = require('../util/util');
-var StructArrayType = require('../util/struct_array');
-var VertexArrayObject = require('../render/vertex_array_object');
-var assert = require('assert');
+var featureFilter = _dereq_('feature-filter');
+var Buffer = _dereq_('./buffer');
+var util = _dereq_('../util/util');
+var StructArrayType = _dereq_('../util/struct_array');
+var VertexArrayObject = _dereq_('../render/vertex_array_object');
+var assert = _dereq_('assert');
 
 module.exports = Bucket;
 
@@ -18,10 +18,10 @@ module.exports = Bucket;
  */
 Bucket.create = function(options) {
     var Classes = {
-        fill: require('./bucket/fill_bucket'),
-        line: require('./bucket/line_bucket'),
-        circle: require('./bucket/circle_bucket'),
-        symbol: require('./bucket/symbol_bucket')
+        fill: _dereq_('./bucket/fill_bucket'),
+        line: _dereq_('./bucket/line_bucket'),
+        circle: _dereq_('./bucket/circle_bucket'),
+        symbol: _dereq_('./bucket/symbol_bucket')
     };
     return new Classes[options.layer.type](options);
 };
@@ -540,12 +540,12 @@ function createGetUniform(attribute, stopOffset) {
     };
 }
 
-},{"../render/vertex_array_object":28,"../util/struct_array":105,"../util/util":107,"./bucket/circle_bucket":2,"./bucket/fill_bucket":3,"./bucket/line_bucket":4,"./bucket/symbol_bucket":5,"./buffer":6,"assert":109,"feature-filter":117}],2:[function(require,module,exports){
+},{"../render/vertex_array_object":28,"../util/struct_array":105,"../util/util":107,"./bucket/circle_bucket":2,"./bucket/fill_bucket":3,"./bucket/line_bucket":4,"./bucket/symbol_bucket":5,"./buffer":6,"assert":109,"feature-filter":117}],2:[function(_dereq_,module,exports){
 'use strict';
 
-var Bucket = require('../bucket');
-var util = require('../../util/util');
-var loadGeometry = require('../load_geometry');
+var Bucket = _dereq_('../bucket');
+var util = _dereq_('../../util/util');
+var loadGeometry = _dereq_('../load_geometry');
 var EXTENT = Bucket.EXTENT;
 
 module.exports = CircleBucket;
@@ -643,14 +643,14 @@ CircleBucket.prototype.addFeature = function(feature) {
     this.populatePaintArrays('circle', globalProperties, feature.properties, startGroup, startIndex);
 };
 
-},{"../../util/util":107,"../bucket":1,"../load_geometry":8}],3:[function(require,module,exports){
+},{"../../util/util":107,"../bucket":1,"../load_geometry":8}],3:[function(_dereq_,module,exports){
 'use strict';
 
-var Bucket = require('../bucket');
-var util = require('../../util/util');
-var loadGeometry = require('../load_geometry');
-var earcut = require('earcut');
-var classifyRings = require('../../util/classify_rings');
+var Bucket = _dereq_('../bucket');
+var util = _dereq_('../../util/util');
+var loadGeometry = _dereq_('../load_geometry');
+var earcut = _dereq_('earcut');
+var classifyRings = _dereq_('../../util/classify_rings');
 var EARCUT_MAX_RINGS = 500;
 
 module.exports = FillBucket;
@@ -748,12 +748,12 @@ FillBucket.prototype.addPolygon = function(polygon) {
     }
 };
 
-},{"../../util/classify_rings":96,"../../util/util":107,"../bucket":1,"../load_geometry":8,"earcut":116}],4:[function(require,module,exports){
+},{"../../util/classify_rings":96,"../../util/util":107,"../bucket":1,"../load_geometry":8,"earcut":116}],4:[function(_dereq_,module,exports){
 'use strict';
 
-var Bucket = require('../bucket');
-var util = require('../../util/util');
-var loadGeometry = require('../load_geometry');
+var Bucket = _dereq_('../bucket');
+var util = _dereq_('../../util/util');
+var loadGeometry = _dereq_('../load_geometry');
 var EXTENT = Bucket.EXTENT;
 
 // NOTE ON EXTRUDE SCALE:
@@ -1177,23 +1177,23 @@ LineBucket.prototype.addPieSliceVertex = function(currentVertex, distance, extru
     }
 };
 
-},{"../../util/util":107,"../bucket":1,"../load_geometry":8}],5:[function(require,module,exports){
+},{"../../util/util":107,"../bucket":1,"../load_geometry":8}],5:[function(_dereq_,module,exports){
 'use strict';
 
-var Point = require('point-geometry');
+var Point = _dereq_('point-geometry');
 
-var Bucket = require('../bucket');
-var Anchor = require('../../symbol/anchor');
-var getAnchors = require('../../symbol/get_anchors');
-var resolveTokens = require('../../util/token');
-var Quads = require('../../symbol/quads');
-var Shaping = require('../../symbol/shaping');
-var resolveText = require('../../symbol/resolve_text');
-var mergeLines = require('../../symbol/mergelines');
-var clipLine = require('../../symbol/clip_line');
-var util = require('../../util/util');
-var loadGeometry = require('../load_geometry');
-var CollisionFeature = require('../../symbol/collision_feature');
+var Bucket = _dereq_('../bucket');
+var Anchor = _dereq_('../../symbol/anchor');
+var getAnchors = _dereq_('../../symbol/get_anchors');
+var resolveTokens = _dereq_('../../util/token');
+var Quads = _dereq_('../../symbol/quads');
+var Shaping = _dereq_('../../symbol/shaping');
+var resolveText = _dereq_('../../symbol/resolve_text');
+var mergeLines = _dereq_('../../symbol/mergelines');
+var clipLine = _dereq_('../../symbol/clip_line');
+var util = _dereq_('../../util/util');
+var loadGeometry = _dereq_('../load_geometry');
+var CollisionFeature = _dereq_('../../symbol/collision_feature');
 
 var shapeText = Shaping.shapeText;
 var shapeIcon = Shaping.shapeIcon;
@@ -1811,7 +1811,7 @@ SymbolBucket.prototype.addSymbolQuad = function(symbolQuad) {
 };
 
 
-},{"../../symbol/anchor":58,"../../symbol/clip_line":60,"../../symbol/collision_feature":62,"../../symbol/get_anchors":64,"../../symbol/mergelines":67,"../../symbol/quads":68,"../../symbol/resolve_text":69,"../../symbol/shaping":70,"../../util/token":106,"../../util/util":107,"../bucket":1,"../load_geometry":8,"point-geometry":170}],6:[function(require,module,exports){
+},{"../../symbol/anchor":58,"../../symbol/clip_line":60,"../../symbol/collision_feature":62,"../../symbol/get_anchors":64,"../../symbol/mergelines":67,"../../symbol/quads":68,"../../symbol/resolve_text":69,"../../symbol/shaping":70,"../../util/token":106,"../../util/util":107,"../bucket":1,"../load_geometry":8,"point-geometry":170}],6:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = Buffer;
@@ -1928,22 +1928,22 @@ Buffer.ELEMENT_ATTRIBUTE_TYPE = 'Uint16';
  */
 Buffer.VERTEX_ATTRIBUTE_ALIGNMENT = 4;
 
-},{}],7:[function(require,module,exports){
+},{}],7:[function(_dereq_,module,exports){
 'use strict';
 
-var Point = require('point-geometry');
-var loadGeometry = require('./load_geometry');
-var EXTENT = require('./bucket').EXTENT;
-var featureFilter = require('feature-filter');
-var StructArrayType = require('../util/struct_array');
-var Grid = require('grid-index');
-var DictionaryCoder = require('../util/dictionary_coder');
-var vt = require('vector-tile');
-var Protobuf = require('pbf');
-var GeoJSONFeature = require('../util/vectortile_to_geojson');
-var arraysIntersect = require('../util/util').arraysIntersect;
+var Point = _dereq_('point-geometry');
+var loadGeometry = _dereq_('./load_geometry');
+var EXTENT = _dereq_('./bucket').EXTENT;
+var featureFilter = _dereq_('feature-filter');
+var StructArrayType = _dereq_('../util/struct_array');
+var Grid = _dereq_('grid-index');
+var DictionaryCoder = _dereq_('../util/dictionary_coder');
+var vt = _dereq_('vector-tile');
+var Protobuf = _dereq_('pbf');
+var GeoJSONFeature = _dereq_('../util/vectortile_to_geojson');
+var arraysIntersect = _dereq_('../util/util').arraysIntersect;
 
-var intersection = require('../util/intersection_tests');
+var intersection = _dereq_('../util/intersection_tests');
 var multiPolygonIntersectsBufferedMultiPoint = intersection.multiPolygonIntersectsBufferedMultiPoint;
 var multiPolygonIntersectsMultiPolygon = intersection.multiPolygonIntersectsMultiPolygon;
 var multiPolygonIntersectsBufferedMultiLine = intersection.multiPolygonIntersectsBufferedMultiLine;
@@ -2229,12 +2229,12 @@ function offsetLine(rings, offset) {
     return newRings;
 }
 
-},{"../util/dictionary_coder":98,"../util/intersection_tests":102,"../util/struct_array":105,"../util/util":107,"../util/vectortile_to_geojson":108,"./bucket":1,"./load_geometry":8,"feature-filter":117,"grid-index":138,"pbf":168,"point-geometry":170,"vector-tile":180}],8:[function(require,module,exports){
+},{"../util/dictionary_coder":98,"../util/intersection_tests":102,"../util/struct_array":105,"../util/util":107,"../util/vectortile_to_geojson":108,"./bucket":1,"./load_geometry":8,"feature-filter":117,"grid-index":138,"pbf":168,"point-geometry":170,"vector-tile":180}],8:[function(_dereq_,module,exports){
 'use strict';
 
-var util = require('../util/util');
+var util = _dereq_('../util/util');
 
-var EXTENT = require('./bucket').EXTENT;
+var EXTENT = _dereq_('./bucket').EXTENT;
 var EXTENT_MIN = EXTENT * -2;
 var EXTENT_MAX = (EXTENT * 2) - 1;
 
@@ -2266,7 +2266,7 @@ module.exports = function loadGeometry(feature) {
     return geometry;
 };
 
-},{"../util/util":107,"./bucket":1}],9:[function(require,module,exports){
+},{"../util/util":107,"./bucket":1}],9:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = Coordinate;
@@ -2345,12 +2345,12 @@ Coordinate.prototype = {
     }
 };
 
-},{}],10:[function(require,module,exports){
+},{}],10:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = LngLat;
 
-var wrap = require('../util/util').wrap;
+var wrap = _dereq_('../util/util').wrap;
 
 /**
  * Create a longitude, latitude object from a given longitude and latitude pair in degrees.
@@ -2439,12 +2439,12 @@ LngLat.convert = function (input) {
     return input;
 };
 
-},{"../util/util":107}],11:[function(require,module,exports){
+},{"../util/util":107}],11:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = LngLatBounds;
 
-var LngLat = require('./lng_lat');
+var LngLat = _dereq_('./lng_lat');
 
 /**
  * Creates a bounding box from the given pair of points. If parameteres are omitted, a `null` bounding box is created.
@@ -2613,17 +2613,17 @@ LngLatBounds.convert = function (input) {
     return new LngLatBounds(input);
 };
 
-},{"./lng_lat":10}],12:[function(require,module,exports){
+},{"./lng_lat":10}],12:[function(_dereq_,module,exports){
 'use strict';
 
-var LngLat = require('./lng_lat'),
-    Point = require('point-geometry'),
-    Coordinate = require('./coordinate'),
-    wrap = require('../util/util').wrap,
-    interp = require('../util/interpolate'),
-    TileCoord = require('../source/tile_coord'),
-    EXTENT = require('../data/bucket').EXTENT,
-    glmatrix = require('gl-matrix');
+var LngLat = _dereq_('./lng_lat'),
+    Point = _dereq_('point-geometry'),
+    Coordinate = _dereq_('./coordinate'),
+    wrap = _dereq_('../util/util').wrap,
+    interp = _dereq_('../util/interpolate'),
+    TileCoord = _dereq_('../source/tile_coord'),
+    EXTENT = _dereq_('../data/bucket').EXTENT,
+    glmatrix = _dereq_('gl-matrix');
 
 var vec4 = glmatrix.vec4,
     mat4 = glmatrix.mat4,
@@ -3040,7 +3040,7 @@ Transform.prototype = {
     }
 };
 
-},{"../data/bucket":1,"../source/tile_coord":36,"../util/interpolate":101,"../util/util":107,"./coordinate":9,"./lng_lat":10,"gl-matrix":128,"point-geometry":170}],13:[function(require,module,exports){
+},{"../data/bucket":1,"../source/tile_coord":36,"../util/interpolate":101,"../util/util":107,"./coordinate":9,"./lng_lat":10,"gl-matrix":128,"point-geometry":170}],13:[function(_dereq_,module,exports){
 'use strict';
 
 // Font data From Hershey Simplex Font
@@ -3173,39 +3173,39 @@ module.exports = function textVertices(text, left, baseline, scale) {
     return strokes;
 };
 
-},{}],14:[function(require,module,exports){
+},{}],14:[function(_dereq_,module,exports){
 'use strict';
 
 // jshint -W079
 var mapboxgl = module.exports = {};
 
-mapboxgl.Map = require('./ui/map');
-mapboxgl.Control = require('./ui/control/control');
-mapboxgl.Navigation = require('./ui/control/navigation');
-mapboxgl.Geolocate = require('./ui/control/geolocate');
-mapboxgl.Attribution = require('./ui/control/attribution');
-mapboxgl.Popup = require('./ui/popup');
+mapboxgl.Map = _dereq_('./ui/map');
+mapboxgl.Control = _dereq_('./ui/control/control');
+mapboxgl.Navigation = _dereq_('./ui/control/navigation');
+mapboxgl.Geolocate = _dereq_('./ui/control/geolocate');
+mapboxgl.Attribution = _dereq_('./ui/control/attribution');
+mapboxgl.Popup = _dereq_('./ui/popup');
 
-mapboxgl.GeoJSONSource = require('./source/geojson_source');
-mapboxgl.VideoSource = require('./source/video_source');
-mapboxgl.ImageSource = require('./source/image_source');
+mapboxgl.GeoJSONSource = _dereq_('./source/geojson_source');
+mapboxgl.VideoSource = _dereq_('./source/video_source');
+mapboxgl.ImageSource = _dereq_('./source/image_source');
 
-mapboxgl.Style = require('./style/style');
+mapboxgl.Style = _dereq_('./style/style');
 
-mapboxgl.LngLat = require('./geo/lng_lat');
-mapboxgl.LngLatBounds = require('./geo/lng_lat_bounds');
-mapboxgl.Point = require('point-geometry');
+mapboxgl.LngLat = _dereq_('./geo/lng_lat');
+mapboxgl.LngLatBounds = _dereq_('./geo/lng_lat_bounds');
+mapboxgl.Point = _dereq_('point-geometry');
 
-mapboxgl.Evented = require('./util/evented');
-mapboxgl.util = require('./util/util');
+mapboxgl.Evented = _dereq_('./util/evented');
+mapboxgl.util = _dereq_('./util/util');
 
-mapboxgl.supported = require('./util/browser').supported;
+mapboxgl.supported = _dereq_('./util/browser').supported;
 
-var ajax = require('./util/ajax');
+var ajax = _dereq_('./util/ajax');
 mapboxgl.util.getJSON = ajax.getJSON;
 mapboxgl.util.getArrayBuffer = ajax.getArrayBuffer;
 
-var config = require('./util/config');
+var config = _dereq_('./util/config');
 mapboxgl.config = config;
 
 Object.defineProperty(mapboxgl, 'accessToken', {
@@ -3213,10 +3213,10 @@ Object.defineProperty(mapboxgl, 'accessToken', {
     set: function(token) { config.ACCESS_TOKEN = token; }
 });
 
-},{"./geo/lng_lat":10,"./geo/lng_lat_bounds":11,"./source/geojson_source":29,"./source/image_source":31,"./source/video_source":39,"./style/style":45,"./ui/control/attribution":76,"./ui/control/control":77,"./ui/control/geolocate":78,"./ui/control/navigation":79,"./ui/map":88,"./ui/popup":89,"./util/ajax":91,"./util/browser":92,"./util/config":97,"./util/evented":99,"./util/util":107,"point-geometry":170}],15:[function(require,module,exports){
+},{"./geo/lng_lat":10,"./geo/lng_lat_bounds":11,"./source/geojson_source":29,"./source/image_source":31,"./source/video_source":39,"./style/style":45,"./ui/control/attribution":76,"./ui/control/control":77,"./ui/control/geolocate":78,"./ui/control/navigation":79,"./ui/map":88,"./ui/popup":89,"./util/ajax":91,"./util/browser":92,"./util/config":97,"./util/evented":99,"./util/util":107,"point-geometry":170}],15:[function(_dereq_,module,exports){
 'use strict';
 
-var assert = require('assert');
+var assert = _dereq_('assert');
 
 module.exports = function(uniforms) {
     var pragmas = { define: {}, initialize: {} };
@@ -3233,13 +3233,13 @@ module.exports = function(uniforms) {
     return pragmas;
 };
 
-},{"assert":109}],16:[function(require,module,exports){
+},{"assert":109}],16:[function(_dereq_,module,exports){
 'use strict';
 
-var TilePyramid = require('../source/tile_pyramid');
+var TilePyramid = _dereq_('../source/tile_pyramid');
 var pyramid = new TilePyramid({ tileSize: 512 });
-var pixelsToTileUnits = require('../source/pixels_to_tile_units');
-var createUniformPragmas = require('./create_uniform_pragmas');
+var pixelsToTileUnits = _dereq_('../source/pixels_to_tile_units');
+var createUniformPragmas = _dereq_('./create_uniform_pragmas');
 
 module.exports = drawBackground;
 
@@ -3324,10 +3324,10 @@ function drawBackground(painter, source, layer) {
     gl.stencilFunc(gl.EQUAL, 0x80, 0x80);
 }
 
-},{"../source/pixels_to_tile_units":32,"../source/tile_pyramid":37,"./create_uniform_pragmas":15}],17:[function(require,module,exports){
+},{"../source/pixels_to_tile_units":32,"../source/tile_pyramid":37,"./create_uniform_pragmas":15}],17:[function(_dereq_,module,exports){
 'use strict';
 
-var browser = require('../util/browser');
+var browser = _dereq_('../util/browser');
 
 module.exports = drawCircles;
 
@@ -3384,7 +3384,7 @@ function drawCircles(painter, source, layer, coords) {
     }
 }
 
-},{"../util/browser":92}],18:[function(require,module,exports){
+},{"../util/browser":92}],18:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = drawCollisionDebug;
@@ -3419,15 +3419,15 @@ function drawCollisionDebug(painter, source, layer, coords) {
     }
 }
 
-},{}],19:[function(require,module,exports){
+},{}],19:[function(_dereq_,module,exports){
 'use strict';
 
-var textVertices = require('../lib/debugtext');
-var browser = require('../util/browser');
-var mat4 = require('gl-matrix').mat4;
-var EXTENT = require('../data/bucket').EXTENT;
-var Buffer = require('../data/buffer');
-var VertexArrayObject = require('./vertex_array_object');
+var textVertices = _dereq_('../lib/debugtext');
+var browser = _dereq_('../util/browser');
+var mat4 = _dereq_('gl-matrix').mat4;
+var EXTENT = _dereq_('../data/bucket').EXTENT;
+var Buffer = _dereq_('../data/buffer');
+var VertexArrayObject = _dereq_('./vertex_array_object');
 
 module.exports = drawDebug;
 
@@ -3480,10 +3480,10 @@ function drawDebugTile(painter, source, coord) {
     gl.drawArrays(gl.LINES, 0, debugTextBuffer.length);
 }
 
-},{"../data/bucket":1,"../data/buffer":6,"../lib/debugtext":13,"../util/browser":92,"./vertex_array_object":28,"gl-matrix":128}],20:[function(require,module,exports){
+},{"../data/bucket":1,"../data/buffer":6,"../lib/debugtext":13,"../util/browser":92,"./vertex_array_object":28,"gl-matrix":128}],20:[function(_dereq_,module,exports){
 'use strict';
 
-var pixelsToTileUnits = require('../source/pixels_to_tile_units');
+var pixelsToTileUnits = _dereq_('../source/pixels_to_tile_units');
 
 module.exports = draw;
 
@@ -3678,12 +3678,12 @@ function setPattern(image, opacity, tile, coord, painter, program) {
     painter.spriteAtlas.bind(gl, true);
 }
 
-},{"../source/pixels_to_tile_units":32}],21:[function(require,module,exports){
+},{"../source/pixels_to_tile_units":32}],21:[function(_dereq_,module,exports){
 'use strict';
 
-var browser = require('../util/browser');
-var mat2 = require('gl-matrix').mat2;
-var pixelsToTileUnits = require('../source/pixels_to_tile_units');
+var browser = _dereq_('../util/browser');
+var mat2 = _dereq_('gl-matrix').mat2;
+var pixelsToTileUnits = _dereq_('../source/pixels_to_tile_units');
 
 /**
  * Draw a line. Under the hood this will read elements from
@@ -3843,11 +3843,11 @@ module.exports = function drawLine(painter, source, layer, coords) {
 
 };
 
-},{"../source/pixels_to_tile_units":32,"../util/browser":92,"gl-matrix":128}],22:[function(require,module,exports){
+},{"../source/pixels_to_tile_units":32,"../util/browser":92,"gl-matrix":128}],22:[function(_dereq_,module,exports){
 'use strict';
 
-var util = require('../util/util');
-var StructArrayType = require('../util/struct_array');
+var util = _dereq_('../util/util');
+var StructArrayType = _dereq_('../util/struct_array');
 
 module.exports = drawRaster;
 
@@ -3989,12 +3989,12 @@ function getOpacities(tile, parentTile, layer, transform) {
     return opacity;
 }
 
-},{"../util/struct_array":105,"../util/util":107}],23:[function(require,module,exports){
+},{"../util/struct_array":105,"../util/util":107}],23:[function(_dereq_,module,exports){
 'use strict';
 
-var browser = require('../util/browser');
-var drawCollisionDebug = require('./draw_collision_debug');
-var pixelsToTileUnits = require('../source/pixels_to_tile_units');
+var browser = _dereq_('../util/browser');
+var drawCollisionDebug = _dereq_('./draw_collision_debug');
+var pixelsToTileUnits = _dereq_('../source/pixels_to_tile_units');
 
 
 module.exports = drawSymbols;
@@ -4190,7 +4190,7 @@ function drawSymbol(painter, layer, posMatrix, tile, bucket, bufferGroups, isTex
     }
 }
 
-},{"../source/pixels_to_tile_units":32,"../util/browser":92,"./draw_collision_debug":18}],24:[function(require,module,exports){
+},{"../source/pixels_to_tile_units":32,"../util/browser":92,"./draw_collision_debug":18}],24:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = FrameHistory;
@@ -4262,10 +4262,10 @@ FrameHistory.prototype.bind = function(gl) {
     }
 };
 
-},{}],25:[function(require,module,exports){
+},{}],25:[function(_dereq_,module,exports){
 'use strict';
 
-var util = require('../util/util');
+var util = _dereq_('../util/util');
 
 module.exports = LineAtlas;
 
@@ -4409,21 +4409,21 @@ LineAtlas.prototype.bind = function(gl) {
     }
 };
 
-},{"../util/util":107}],26:[function(require,module,exports){
+},{"../util/util":107}],26:[function(_dereq_,module,exports){
 'use strict';
 
-var browser = require('../util/browser');
-var mat4 = require('gl-matrix').mat4;
-var FrameHistory = require('./frame_history');
-var TilePyramid = require('../source/tile_pyramid');
-var EXTENT = require('../data/bucket').EXTENT;
-var pixelsToTileUnits = require('../source/pixels_to_tile_units');
-var util = require('../util/util');
-var StructArrayType = require('../util/struct_array');
-var Buffer = require('../data/buffer');
-var VertexArrayObject = require('./vertex_array_object');
-var RasterBoundsArray = require('./draw_raster').RasterBoundsArray;
-var createUniformPragmas = require('./create_uniform_pragmas');
+var browser = _dereq_('../util/browser');
+var mat4 = _dereq_('gl-matrix').mat4;
+var FrameHistory = _dereq_('./frame_history');
+var TilePyramid = _dereq_('../source/tile_pyramid');
+var EXTENT = _dereq_('../data/bucket').EXTENT;
+var pixelsToTileUnits = _dereq_('../source/pixels_to_tile_units');
+var util = _dereq_('../util/util');
+var StructArrayType = _dereq_('../util/struct_array');
+var Buffer = _dereq_('../data/buffer');
+var VertexArrayObject = _dereq_('./vertex_array_object');
+var RasterBoundsArray = _dereq_('./draw_raster').RasterBoundsArray;
+var createUniformPragmas = _dereq_('./create_uniform_pragmas');
 
 module.exports = Painter;
 
@@ -4452,7 +4452,7 @@ function Painter(gl, transform) {
     this.lineWidthRange = gl.getParameter(gl.ALIASED_LINE_WIDTH_RANGE);
 }
 
-util.extend(Painter.prototype, require('./painter/use_program'));
+util.extend(Painter.prototype, _dereq_('./painter/use_program'));
 
 /*
  * Update the GL viewport, projection matrix, and transforms to compensate
@@ -4591,13 +4591,13 @@ Painter.prototype.bindDefaultFramebuffer = function() {
 };
 
 var draw = {
-    symbol: require('./draw_symbol'),
-    circle: require('./draw_circle'),
-    line: require('./draw_line'),
-    fill: require('./draw_fill'),
-    raster: require('./draw_raster'),
-    background: require('./draw_background'),
-    debug: require('./draw_debug')
+    symbol: _dereq_('./draw_symbol'),
+    circle: _dereq_('./draw_circle'),
+    line: _dereq_('./draw_line'),
+    fill: _dereq_('./draw_fill'),
+    raster: _dereq_('./draw_raster'),
+    background: _dereq_('./draw_background'),
+    debug: _dereq_('./draw_debug')
 };
 
 Painter.prototype.render = function(style, options) {
@@ -4750,12 +4750,12 @@ Painter.prototype.showOverdrawInspector = function(enabled) {
     }
 };
 
-},{"../data/bucket":1,"../data/buffer":6,"../source/pixels_to_tile_units":32,"../source/tile_pyramid":37,"../util/browser":92,"../util/struct_array":105,"../util/util":107,"./create_uniform_pragmas":15,"./draw_background":16,"./draw_circle":17,"./draw_debug":19,"./draw_fill":20,"./draw_line":21,"./draw_raster":22,"./draw_symbol":23,"./frame_history":24,"./painter/use_program":27,"./vertex_array_object":28,"gl-matrix":128}],27:[function(require,module,exports){
+},{"../data/bucket":1,"../data/buffer":6,"../source/pixels_to_tile_units":32,"../source/tile_pyramid":37,"../util/browser":92,"../util/struct_array":105,"../util/util":107,"./create_uniform_pragmas":15,"./draw_background":16,"./draw_circle":17,"./draw_debug":19,"./draw_fill":20,"./draw_line":21,"./draw_raster":22,"./draw_symbol":23,"./frame_history":24,"./painter/use_program":27,"./vertex_array_object":28,"gl-matrix":128}],27:[function(_dereq_,module,exports){
 'use strict';
 
-var assert = require('assert');
-var util = require('../../util/util');
-var shaders = require('mapbox-gl-shaders');
+var assert = _dereq_('assert');
+var util = _dereq_('../../util/util');
+var shaders = _dereq_('mapbox-gl-shaders');
 
 var utilSource = shaders.util;
 
@@ -4847,11 +4847,11 @@ function applyPragmas(source, pragmas) {
     });
 }
 
-},{"../../util/util":107,"assert":109,"mapbox-gl-shaders":141}],28:[function(require,module,exports){
+},{"../../util/util":107,"assert":109,"mapbox-gl-shaders":141}],28:[function(_dereq_,module,exports){
 'use strict';
 
-var assert = require('assert');
-var util = require('../util/util');
+var assert = _dereq_('assert');
+var util = _dereq_('../util/util');
 
 module.exports = VertexArrayObject;
 
@@ -4947,15 +4947,15 @@ VertexArrayObject.prototype.destroy = function(gl) {
     }
 };
 
-},{"../util/util":107,"assert":109}],29:[function(require,module,exports){
+},{"../util/util":107,"assert":109}],29:[function(_dereq_,module,exports){
 'use strict';
 
-var util = require('../util/util');
-var Evented = require('../util/evented');
-var TilePyramid = require('./tile_pyramid');
-var Source = require('./source');
-var urlResolve = require('resolve-url');
-var EXTENT = require('../data/bucket').EXTENT;
+var util = _dereq_('../util/util');
+var Evented = _dereq_('../util/evented');
+var TilePyramid = _dereq_('./tile_pyramid');
+var Source = _dereq_('./source');
+var urlResolve = _dereq_('resolve-url');
+var EXTENT = _dereq_('../data/bucket').EXTENT;
 
 module.exports = GeoJSONSource;
 
@@ -5181,12 +5181,12 @@ GeoJSONSource.prototype = util.inherit(Evented, /** @lends GeoJSONSource.prototy
     }
 });
 
-},{"../data/bucket":1,"../util/evented":99,"../util/util":107,"./source":34,"./tile_pyramid":37,"resolve-url":172}],30:[function(require,module,exports){
+},{"../data/bucket":1,"../util/evented":99,"../util/util":107,"./source":34,"./tile_pyramid":37,"resolve-url":172}],30:[function(_dereq_,module,exports){
 'use strict';
 
-var Point = require('point-geometry');
-var VectorTileFeature = require('vector-tile').VectorTileFeature;
-var EXTENT = require('../data/bucket').EXTENT;
+var Point = _dereq_('point-geometry');
+var VectorTileFeature = _dereq_('vector-tile').VectorTileFeature;
+var EXTENT = _dereq_('../data/bucket').EXTENT;
 
 module.exports = GeoJSONWrapper;
 
@@ -5257,20 +5257,20 @@ FeatureWrapper.prototype.bbox = function() {
 
 FeatureWrapper.prototype.toGeoJSON = VectorTileFeature.prototype.toGeoJSON;
 
-},{"../data/bucket":1,"point-geometry":170,"vector-tile":180}],31:[function(require,module,exports){
+},{"../data/bucket":1,"point-geometry":170,"vector-tile":180}],31:[function(_dereq_,module,exports){
 'use strict';
 
-var util = require('../util/util');
-var Tile = require('./tile');
-var TileCoord = require('./tile_coord');
-var LngLat = require('../geo/lng_lat');
-var Point = require('point-geometry');
-var Evented = require('../util/evented');
-var ajax = require('../util/ajax');
-var EXTENT = require('../data/bucket').EXTENT;
-var RasterBoundsArray = require('../render/draw_raster').RasterBoundsArray;
-var Buffer = require('../data/buffer');
-var VertexArrayObject = require('../render/vertex_array_object');
+var util = _dereq_('../util/util');
+var Tile = _dereq_('./tile');
+var TileCoord = _dereq_('./tile_coord');
+var LngLat = _dereq_('../geo/lng_lat');
+var Point = _dereq_('point-geometry');
+var Evented = _dereq_('../util/evented');
+var ajax = _dereq_('../util/ajax');
+var EXTENT = _dereq_('../data/bucket').EXTENT;
+var RasterBoundsArray = _dereq_('../render/draw_raster').RasterBoundsArray;
+var Buffer = _dereq_('../data/buffer');
+var VertexArrayObject = _dereq_('../render/vertex_array_object');
 
 module.exports = ImageSource;
 
@@ -5420,10 +5420,10 @@ ImageSource.prototype = util.inherit(Evented, /** @lends ImageSource.prototype *
     }
 });
 
-},{"../data/bucket":1,"../data/buffer":6,"../geo/lng_lat":10,"../render/draw_raster":22,"../render/vertex_array_object":28,"../util/ajax":91,"../util/evented":99,"../util/util":107,"./tile":35,"./tile_coord":36,"point-geometry":170}],32:[function(require,module,exports){
+},{"../data/bucket":1,"../data/buffer":6,"../geo/lng_lat":10,"../render/draw_raster":22,"../render/vertex_array_object":28,"../util/ajax":91,"../util/evented":99,"../util/util":107,"./tile":35,"./tile_coord":36,"point-geometry":170}],32:[function(_dereq_,module,exports){
 'use strict';
 
-var Bucket = require('../data/bucket');
+var Bucket = _dereq_('../data/bucket');
 
 /**
  * Converts a pixel value at a the given zoom level to tile units.
@@ -5445,14 +5445,14 @@ module.exports = function(tile, pixelValue, z) {
 };
 
 
-},{"../data/bucket":1}],33:[function(require,module,exports){
+},{"../data/bucket":1}],33:[function(_dereq_,module,exports){
 'use strict';
 
-var util = require('../util/util');
-var ajax = require('../util/ajax');
-var Evented = require('../util/evented');
-var Source = require('./source');
-var normalizeURL = require('../util/mapbox').normalizeTileURL;
+var util = _dereq_('../util/util');
+var ajax = _dereq_('../util/ajax');
+var Evented = _dereq_('../util/evented');
+var Source = _dereq_('./source');
+var normalizeURL = _dereq_('../util/mapbox').normalizeTileURL;
 
 module.exports = RasterTileSource;
 
@@ -5566,15 +5566,15 @@ RasterTileSource.prototype = util.inherit(Evented, {
     }
 });
 
-},{"../util/ajax":91,"../util/evented":99,"../util/mapbox":104,"../util/util":107,"./source":34}],34:[function(require,module,exports){
+},{"../util/ajax":91,"../util/evented":99,"../util/mapbox":104,"../util/util":107,"./source":34}],34:[function(_dereq_,module,exports){
 'use strict';
 
-var util = require('../util/util');
-var ajax = require('../util/ajax');
-var browser = require('../util/browser');
-var TilePyramid = require('./tile_pyramid');
-var normalizeURL = require('../util/mapbox').normalizeSourceURL;
-var TileCoord = require('./tile_coord');
+var util = _dereq_('../util/util');
+var ajax = _dereq_('../util/ajax');
+var browser = _dereq_('../util/browser');
+var TilePyramid = _dereq_('./tile_pyramid');
+var normalizeURL = _dereq_('../util/mapbox').normalizeSourceURL;
+var TileCoord = _dereq_('./tile_coord');
 
 exports._loadTileJSON = function(options) {
     var loaded = function(err, tileJSON) {
@@ -5732,11 +5732,11 @@ exports._querySourceFeatures = function(params) {
 exports.create = function(source) {
     // This is not at file scope in order to avoid a circular require.
     var sources = {
-        vector: require('./vector_tile_source'),
-        raster: require('./raster_tile_source'),
-        geojson: require('./geojson_source'),
-        video: require('./video_source'),
-        image: require('./image_source')
+        vector: _dereq_('./vector_tile_source'),
+        raster: _dereq_('./raster_tile_source'),
+        geojson: _dereq_('./geojson_source'),
+        video: _dereq_('./video_source'),
+        image: _dereq_('./image_source')
     };
 
     return exports.is(source) ? source : new sources[source.type](source);
@@ -5745,11 +5745,11 @@ exports.create = function(source) {
 exports.is = function(source) {
     // This is not at file scope in order to avoid a circular require.
     var sources = {
-        vector: require('./vector_tile_source'),
-        raster: require('./raster_tile_source'),
-        geojson: require('./geojson_source'),
-        video: require('./video_source'),
-        image: require('./image_source')
+        vector: _dereq_('./vector_tile_source'),
+        raster: _dereq_('./raster_tile_source'),
+        geojson: _dereq_('./geojson_source'),
+        video: _dereq_('./video_source'),
+        image: _dereq_('./image_source')
     };
 
     for (var type in sources) {
@@ -5761,20 +5761,20 @@ exports.is = function(source) {
     return false;
 };
 
-},{"../util/ajax":91,"../util/browser":92,"../util/mapbox":104,"../util/util":107,"./geojson_source":29,"./image_source":31,"./raster_tile_source":33,"./tile_coord":36,"./tile_pyramid":37,"./vector_tile_source":38,"./video_source":39}],35:[function(require,module,exports){
+},{"../util/ajax":91,"../util/browser":92,"../util/mapbox":104,"../util/util":107,"./geojson_source":29,"./image_source":31,"./raster_tile_source":33,"./tile_coord":36,"./tile_pyramid":37,"./vector_tile_source":38,"./video_source":39}],35:[function(_dereq_,module,exports){
 'use strict';
 
-var util = require('../util/util');
-var Bucket = require('../data/bucket');
-var FeatureIndex = require('../data/feature_index');
-var vt = require('vector-tile');
-var Protobuf = require('pbf');
-var GeoJSONFeature = require('../util/vectortile_to_geojson');
-var featureFilter = require('feature-filter');
-var CollisionTile = require('../symbol/collision_tile');
-var CollisionBoxArray = require('../symbol/collision_box');
-var SymbolInstancesArray = require('../symbol/symbol_instances');
-var SymbolQuadsArray = require('../symbol/symbol_quads');
+var util = _dereq_('../util/util');
+var Bucket = _dereq_('../data/bucket');
+var FeatureIndex = _dereq_('../data/feature_index');
+var vt = _dereq_('vector-tile');
+var Protobuf = _dereq_('pbf');
+var GeoJSONFeature = _dereq_('../util/vectortile_to_geojson');
+var featureFilter = _dereq_('feature-filter');
+var CollisionTile = _dereq_('../symbol/collision_tile');
+var CollisionBoxArray = _dereq_('../symbol/collision_box');
+var SymbolInstancesArray = _dereq_('../symbol/symbol_instances');
+var SymbolQuadsArray = _dereq_('../symbol/symbol_quads');
 
 module.exports = Tile;
 
@@ -5953,12 +5953,12 @@ function unserializeBuckets(input, style) {
     return output;
 }
 
-},{"../data/bucket":1,"../data/feature_index":7,"../symbol/collision_box":61,"../symbol/collision_tile":63,"../symbol/symbol_instances":72,"../symbol/symbol_quads":73,"../util/util":107,"../util/vectortile_to_geojson":108,"feature-filter":117,"pbf":168,"vector-tile":180}],36:[function(require,module,exports){
+},{"../data/bucket":1,"../data/feature_index":7,"../symbol/collision_box":61,"../symbol/collision_tile":63,"../symbol/symbol_instances":72,"../symbol/symbol_quads":73,"../util/util":107,"../util/vectortile_to_geojson":108,"feature-filter":117,"pbf":168,"vector-tile":180}],36:[function(_dereq_,module,exports){
 'use strict';
 
-var assert = require('assert');
-var WhooTS = require('whoots-js');
-var Coordinate = require('../geo/coordinate');
+var assert = _dereq_('assert');
+var WhooTS = _dereq_('whoots-js');
+var Coordinate = _dereq_('../geo/coordinate');
 
 module.exports = TileCoord;
 
@@ -6136,16 +6136,16 @@ TileCoord.cover = function(z, bounds, actualZ) {
     });
 };
 
-},{"../geo/coordinate":9,"assert":109,"whoots-js":188}],37:[function(require,module,exports){
+},{"../geo/coordinate":9,"assert":109,"whoots-js":188}],37:[function(_dereq_,module,exports){
 'use strict';
 
-var Tile = require('./tile');
-var TileCoord = require('./tile_coord');
-var Point = require('point-geometry');
-var Cache = require('../util/lru_cache');
-var Coordinate = require('../geo/coordinate');
-var util = require('../util/util');
-var EXTENT = require('../data/bucket').EXTENT;
+var Tile = _dereq_('./tile');
+var TileCoord = _dereq_('./tile_coord');
+var Point = _dereq_('point-geometry');
+var Cache = _dereq_('../util/lru_cache');
+var Coordinate = _dereq_('../geo/coordinate');
+var util = _dereq_('../util/util');
+var EXTENT = _dereq_('../data/bucket').EXTENT;
 
 module.exports = TilePyramid;
 
@@ -6602,13 +6602,13 @@ function compareKeyZoom(a, b) {
     return (a % 32) - (b % 32);
 }
 
-},{"../data/bucket":1,"../geo/coordinate":9,"../util/lru_cache":103,"../util/util":107,"./tile":35,"./tile_coord":36,"point-geometry":170}],38:[function(require,module,exports){
+},{"../data/bucket":1,"../geo/coordinate":9,"../util/lru_cache":103,"../util/util":107,"./tile":35,"./tile_coord":36,"point-geometry":170}],38:[function(_dereq_,module,exports){
 'use strict';
 
-var util = require('../util/util');
-var Evented = require('../util/evented');
-var Source = require('./source');
-var normalizeURL = require('../util/mapbox').normalizeTileURL;
+var util = _dereq_('../util/util');
+var Evented = _dereq_('../util/evented');
+var Source = _dereq_('./source');
+var normalizeURL = _dereq_('../util/mapbox').normalizeTileURL;
 
 module.exports = VectorTileSource;
 
@@ -6731,20 +6731,20 @@ VectorTileSource.prototype = util.inherit(Evented, {
     }
 });
 
-},{"../util/evented":99,"../util/mapbox":104,"../util/util":107,"./source":34}],39:[function(require,module,exports){
+},{"../util/evented":99,"../util/mapbox":104,"../util/util":107,"./source":34}],39:[function(_dereq_,module,exports){
 'use strict';
 
-var util = require('../util/util');
-var Tile = require('./tile');
-var TileCoord = require('./tile_coord');
-var LngLat = require('../geo/lng_lat');
-var Point = require('point-geometry');
-var Evented = require('../util/evented');
-var ajax = require('../util/ajax');
-var EXTENT = require('../data/bucket').EXTENT;
-var RasterBoundsArray = require('../render/draw_raster').RasterBoundsArray;
-var Buffer = require('../data/buffer');
-var VertexArrayObject = require('../render/vertex_array_object');
+var util = _dereq_('../util/util');
+var Tile = _dereq_('./tile');
+var TileCoord = _dereq_('./tile_coord');
+var LngLat = _dereq_('../geo/lng_lat');
+var Point = _dereq_('point-geometry');
+var Evented = _dereq_('../util/evented');
+var ajax = _dereq_('../util/ajax');
+var EXTENT = _dereq_('../data/bucket').EXTENT;
+var RasterBoundsArray = _dereq_('../render/draw_raster').RasterBoundsArray;
+var Buffer = _dereq_('../data/buffer');
+var VertexArrayObject = _dereq_('../render/vertex_array_object');
 
 module.exports = VideoSource;
 
@@ -6922,22 +6922,22 @@ VideoSource.prototype = util.inherit(Evented, /** @lends VideoSource.prototype *
     }
 });
 
-},{"../data/bucket":1,"../data/buffer":6,"../geo/lng_lat":10,"../render/draw_raster":22,"../render/vertex_array_object":28,"../util/ajax":91,"../util/evented":99,"../util/util":107,"./tile":35,"./tile_coord":36,"point-geometry":170}],40:[function(require,module,exports){
+},{"../data/bucket":1,"../data/buffer":6,"../geo/lng_lat":10,"../render/draw_raster":22,"../render/vertex_array_object":28,"../util/ajax":91,"../util/evented":99,"../util/util":107,"./tile":35,"./tile_coord":36,"point-geometry":170}],40:[function(_dereq_,module,exports){
 'use strict';
 
-var Actor = require('../util/actor');
-var WorkerTile = require('./worker_tile');
-var StyleLayer = require('../style/style_layer');
-var util = require('../util/util');
-var ajax = require('../util/ajax');
-var vt = require('vector-tile');
-var Protobuf = require('pbf');
-var supercluster = require('supercluster');
+var Actor = _dereq_('../util/actor');
+var WorkerTile = _dereq_('./worker_tile');
+var StyleLayer = _dereq_('../style/style_layer');
+var util = _dereq_('../util/util');
+var ajax = _dereq_('../util/ajax');
+var vt = _dereq_('vector-tile');
+var Protobuf = _dereq_('pbf');
+var supercluster = _dereq_('supercluster');
 
-var geojsonvt = require('geojson-vt');
-var rewind = require('geojson-rewind');
-var GeoJSONWrapper = require('./geojson_wrapper');
-var vtpbf = require('vt-pbf');
+var geojsonvt = _dereq_('geojson-vt');
+var rewind = _dereq_('geojson-rewind');
+var GeoJSONWrapper = _dereq_('./geojson_wrapper');
+var vtpbf = _dereq_('vt-pbf');
 
 module.exports = function(self) {
     return new Worker(self);
@@ -7165,17 +7165,17 @@ function createLayerFamilies(layers) {
     return families;
 }
 
-},{"../style/style_layer":48,"../util/actor":90,"../util/ajax":91,"../util/util":107,"./geojson_wrapper":30,"./worker_tile":41,"geojson-rewind":118,"geojson-vt":123,"pbf":168,"supercluster":174,"vector-tile":180,"vt-pbf":184}],41:[function(require,module,exports){
+},{"../style/style_layer":48,"../util/actor":90,"../util/ajax":91,"../util/util":107,"./geojson_wrapper":30,"./worker_tile":41,"geojson-rewind":118,"geojson-vt":123,"pbf":168,"supercluster":174,"vector-tile":180,"vt-pbf":184}],41:[function(_dereq_,module,exports){
 'use strict';
 
-var FeatureIndex = require('../data/feature_index');
-var CollisionTile = require('../symbol/collision_tile');
-var Bucket = require('../data/bucket');
-var CollisionBoxArray = require('../symbol/collision_box');
-var DictionaryCoder = require('../util/dictionary_coder');
-var util = require('../util/util');
-var SymbolInstancesArray = require('../symbol/symbol_instances');
-var SymbolQuadsArray = require('../symbol/symbol_quads');
+var FeatureIndex = _dereq_('../data/feature_index');
+var CollisionTile = _dereq_('../symbol/collision_tile');
+var Bucket = _dereq_('../data/bucket');
+var CollisionBoxArray = _dereq_('../symbol/collision_box');
+var DictionaryCoder = _dereq_('../util/dictionary_coder');
+var util = _dereq_('../util/util');
+var SymbolInstancesArray = _dereq_('../symbol/symbol_instances');
+var SymbolQuadsArray = _dereq_('../symbol/symbol_quads');
 
 module.exports = WorkerTile;
 
@@ -7472,7 +7472,7 @@ function getLayerId(layer) {
     return layer.id;
 }
 
-},{"../data/bucket":1,"../data/feature_index":7,"../symbol/collision_box":61,"../symbol/collision_tile":63,"../symbol/symbol_instances":72,"../symbol/symbol_quads":73,"../util/dictionary_coder":98,"../util/util":107}],42:[function(require,module,exports){
+},{"../data/bucket":1,"../data/feature_index":7,"../symbol/collision_box":61,"../symbol/collision_tile":63,"../symbol/symbol_instances":72,"../symbol/symbol_quads":73,"../util/dictionary_coder":98,"../util/util":107}],42:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = AnimationLoop;
@@ -7504,13 +7504,13 @@ AnimationLoop.prototype.cancel = function(n) {
     });
 };
 
-},{}],43:[function(require,module,exports){
+},{}],43:[function(_dereq_,module,exports){
 'use strict';
 
-var Evented = require('../util/evented');
-var ajax = require('../util/ajax');
-var browser = require('../util/browser');
-var normalizeURL = require('../util/mapbox').normalizeSpriteURL;
+var Evented = _dereq_('../util/evented');
+var ajax = _dereq_('../util/ajax');
+var browser = _dereq_('../util/browser');
+var normalizeURL = _dereq_('../util/mapbox').normalizeSpriteURL;
 
 module.exports = ImageSprite;
 
@@ -7585,12 +7585,12 @@ ImageSprite.prototype.getSpritePosition = function(name) {
     return new SpritePosition();
 };
 
-},{"../util/ajax":91,"../util/browser":92,"../util/evented":99,"../util/mapbox":104}],44:[function(require,module,exports){
+},{"../util/ajax":91,"../util/browser":92,"../util/evented":99,"../util/mapbox":104}],44:[function(_dereq_,module,exports){
 'use strict';
 
-var parseColorString = require('csscolorparser').parseCSSColor;
-var util = require('../util/util');
-var StyleFunction = require('./style_function');
+var parseColorString = _dereq_('csscolorparser').parseCSSColor;
+var util = _dereq_('../util/util');
+var StyleFunction = _dereq_('./style_function');
 
 var cache = {};
 
@@ -7627,25 +7627,25 @@ module.exports = function parseColor(input) {
     }
 };
 
-},{"../util/util":107,"./style_function":47,"csscolorparser":115}],45:[function(require,module,exports){
+},{"../util/util":107,"./style_function":47,"csscolorparser":115}],45:[function(_dereq_,module,exports){
 'use strict';
 
-var Evented = require('../util/evented');
-var StyleLayer = require('./style_layer');
-var ImageSprite = require('./image_sprite');
-var GlyphSource = require('../symbol/glyph_source');
-var SpriteAtlas = require('../symbol/sprite_atlas');
-var LineAtlas = require('../render/line_atlas');
-var util = require('../util/util');
-var ajax = require('../util/ajax');
-var normalizeURL = require('../util/mapbox').normalizeStyleURL;
-var browser = require('../util/browser');
-var Dispatcher = require('../util/dispatcher');
-var AnimationLoop = require('./animation_loop');
-var validateStyle = require('./validate_style');
-var Source = require('../source/source');
-var styleSpec = require('./style_spec');
-var StyleFunction = require('./style_function');
+var Evented = _dereq_('../util/evented');
+var StyleLayer = _dereq_('./style_layer');
+var ImageSprite = _dereq_('./image_sprite');
+var GlyphSource = _dereq_('../symbol/glyph_source');
+var SpriteAtlas = _dereq_('../symbol/sprite_atlas');
+var LineAtlas = _dereq_('../render/line_atlas');
+var util = _dereq_('../util/util');
+var ajax = _dereq_('../util/ajax');
+var normalizeURL = _dereq_('../util/mapbox').normalizeStyleURL;
+var browser = _dereq_('../util/browser');
+var Dispatcher = _dereq_('../util/dispatcher');
+var AnimationLoop = _dereq_('./animation_loop');
+var validateStyle = _dereq_('./validate_style');
+var Source = _dereq_('../source/source');
+var styleSpec = _dereq_('./style_spec');
+var StyleFunction = _dereq_('./style_function');
 
 module.exports = Style;
 
@@ -8371,12 +8371,12 @@ Style.prototype = util.inherit(Evented, {
     }
 });
 
-},{"../render/line_atlas":25,"../source/source":34,"../symbol/glyph_source":66,"../symbol/sprite_atlas":71,"../util/ajax":91,"../util/browser":92,"../util/dispatcher":94,"../util/evented":99,"../util/mapbox":104,"../util/util":107,"./animation_loop":42,"./image_sprite":43,"./style_function":47,"./style_layer":48,"./style_spec":55,"./validate_style":57}],46:[function(require,module,exports){
+},{"../render/line_atlas":25,"../source/source":34,"../symbol/glyph_source":66,"../symbol/sprite_atlas":71,"../util/ajax":91,"../util/browser":92,"../util/dispatcher":94,"../util/evented":99,"../util/mapbox":104,"../util/util":107,"./animation_loop":42,"./image_sprite":43,"./style_function":47,"./style_layer":48,"./style_spec":55,"./validate_style":57}],46:[function(_dereq_,module,exports){
 'use strict';
 
-var MapboxGLFunction = require('./style_function');
-var parseColor = require('./parse_color');
-var util = require('../util/util');
+var MapboxGLFunction = _dereq_('./style_function');
+var parseColor = _dereq_('./parse_color');
+var util = _dereq_('../util/util');
 
 module.exports = StyleDeclaration;
 
@@ -8457,10 +8457,10 @@ function transitioned(calculate) {
     };
 }
 
-},{"../util/util":107,"./parse_color":44,"./style_function":47}],47:[function(require,module,exports){
+},{"../util/util":107,"./parse_color":44,"./style_function":47}],47:[function(_dereq_,module,exports){
 'use strict';
 
-var MapboxGLFunction = require('mapbox-gl-function');
+var MapboxGLFunction = _dereq_('mapbox-gl-function');
 
 exports.interpolated = function(parameters) {
     var inner = MapboxGLFunction.interpolated(parameters);
@@ -8484,16 +8484,16 @@ exports['piecewise-constant'] = function(parameters) {
 
 exports.isFunctionDefinition = MapboxGLFunction.isFunctionDefinition;
 
-},{"mapbox-gl-function":139}],48:[function(require,module,exports){
+},{"mapbox-gl-function":139}],48:[function(_dereq_,module,exports){
 'use strict';
 
-var util = require('../util/util');
-var StyleTransition = require('./style_transition');
-var StyleDeclaration = require('./style_declaration');
-var styleSpec = require('./style_spec');
-var validateStyle = require('./validate_style');
-var parseColor = require('./parse_color');
-var Evented = require('../util/evented');
+var util = _dereq_('../util/util');
+var StyleTransition = _dereq_('./style_transition');
+var StyleDeclaration = _dereq_('./style_declaration');
+var styleSpec = _dereq_('./style_spec');
+var validateStyle = _dereq_('./validate_style');
+var parseColor = _dereq_('./parse_color');
+var Evented = _dereq_('../util/evented');
 
 module.exports = StyleLayer;
 
@@ -8501,12 +8501,12 @@ var TRANSITION_SUFFIX = '-transition';
 
 StyleLayer.create = function(layer, refLayer) {
     var Classes = {
-        background: require('./style_layer/background_style_layer'),
-        circle: require('./style_layer/circle_style_layer'),
-        fill: require('./style_layer/fill_style_layer'),
-        line: require('./style_layer/line_style_layer'),
-        raster: require('./style_layer/raster_style_layer'),
-        symbol: require('./style_layer/symbol_style_layer')
+        background: _dereq_('./style_layer/background_style_layer'),
+        circle: _dereq_('./style_layer/circle_style_layer'),
+        fill: _dereq_('./style_layer/fill_style_layer'),
+        line: _dereq_('./style_layer/line_style_layer'),
+        raster: _dereq_('./style_layer/raster_style_layer'),
+        symbol: _dereq_('./style_layer/symbol_style_layer')
     };
     return new Classes[(refLayer || layer).type](layer, refLayer);
 };
@@ -8821,11 +8821,11 @@ function getDeclarationValue(declaration) {
     return declaration.value;
 }
 
-},{"../util/evented":99,"../util/util":107,"./parse_color":44,"./style_declaration":46,"./style_layer/background_style_layer":49,"./style_layer/circle_style_layer":50,"./style_layer/fill_style_layer":51,"./style_layer/line_style_layer":52,"./style_layer/raster_style_layer":53,"./style_layer/symbol_style_layer":54,"./style_spec":55,"./style_transition":56,"./validate_style":57}],49:[function(require,module,exports){
+},{"../util/evented":99,"../util/util":107,"./parse_color":44,"./style_declaration":46,"./style_layer/background_style_layer":49,"./style_layer/circle_style_layer":50,"./style_layer/fill_style_layer":51,"./style_layer/line_style_layer":52,"./style_layer/raster_style_layer":53,"./style_layer/symbol_style_layer":54,"./style_spec":55,"./style_transition":56,"./validate_style":57}],49:[function(_dereq_,module,exports){
 'use strict';
 
-var util = require('../../util/util');
-var StyleLayer = require('../style_layer');
+var util = _dereq_('../../util/util');
+var StyleLayer = _dereq_('../style_layer');
 
 function BackgroundStyleLayer() {
     StyleLayer.apply(this, arguments);
@@ -8835,11 +8835,11 @@ module.exports = BackgroundStyleLayer;
 
 BackgroundStyleLayer.prototype = util.inherit(StyleLayer, {});
 
-},{"../../util/util":107,"../style_layer":48}],50:[function(require,module,exports){
+},{"../../util/util":107,"../style_layer":48}],50:[function(_dereq_,module,exports){
 'use strict';
 
-var util = require('../../util/util');
-var StyleLayer = require('../style_layer');
+var util = _dereq_('../../util/util');
+var StyleLayer = _dereq_('../style_layer');
 
 function CircleStyleLayer() {
     StyleLayer.apply(this, arguments);
@@ -8849,11 +8849,11 @@ module.exports = CircleStyleLayer;
 
 CircleStyleLayer.prototype = util.inherit(StyleLayer, {});
 
-},{"../../util/util":107,"../style_layer":48}],51:[function(require,module,exports){
+},{"../../util/util":107,"../style_layer":48}],51:[function(_dereq_,module,exports){
 'use strict';
 
-var util = require('../../util/util');
-var StyleLayer = require('../style_layer');
+var util = _dereq_('../../util/util');
+var StyleLayer = _dereq_('../style_layer');
 
 function FillStyleLayer() {
     StyleLayer.apply(this, arguments);
@@ -8905,11 +8905,11 @@ FillStyleLayer.prototype = util.inherit(StyleLayer, {
 
 module.exports = FillStyleLayer;
 
-},{"../../util/util":107,"../style_layer":48}],52:[function(require,module,exports){
+},{"../../util/util":107,"../style_layer":48}],52:[function(_dereq_,module,exports){
 'use strict';
 
-var util = require('../../util/util');
-var StyleLayer = require('../style_layer');
+var util = _dereq_('../../util/util');
+var StyleLayer = _dereq_('../style_layer');
 
 function LineStyleLayer() {
     StyleLayer.apply(this, arguments);
@@ -8939,11 +8939,11 @@ LineStyleLayer.prototype = util.inherit(StyleLayer, {
     }
 });
 
-},{"../../util/util":107,"../style_layer":48}],53:[function(require,module,exports){
+},{"../../util/util":107,"../style_layer":48}],53:[function(_dereq_,module,exports){
 'use strict';
 
-var util = require('../../util/util');
-var StyleLayer = require('../style_layer');
+var util = _dereq_('../../util/util');
+var StyleLayer = _dereq_('../style_layer');
 
 function RasterStyleLayer() {
     StyleLayer.apply(this, arguments);
@@ -8953,11 +8953,11 @@ module.exports = RasterStyleLayer;
 
 RasterStyleLayer.prototype = util.inherit(StyleLayer, {});
 
-},{"../../util/util":107,"../style_layer":48}],54:[function(require,module,exports){
+},{"../../util/util":107,"../style_layer":48}],54:[function(_dereq_,module,exports){
 'use strict';
 
-var util = require('../../util/util');
-var StyleLayer = require('../style_layer');
+var util = _dereq_('../../util/util');
+var StyleLayer = _dereq_('../style_layer');
 
 function SymbolStyleLayer() {
     StyleLayer.apply(this, arguments);
@@ -8993,16 +8993,16 @@ SymbolStyleLayer.prototype = util.inherit(StyleLayer, {
 
 });
 
-},{"../../util/util":107,"../style_layer":48}],55:[function(require,module,exports){
+},{"../../util/util":107,"../style_layer":48}],55:[function(_dereq_,module,exports){
 'use strict';
 
-module.exports = require('mapbox-gl-style-spec/reference/latest');
+module.exports = _dereq_('mapbox-gl-style-spec/reference/latest');
 
-},{"mapbox-gl-style-spec/reference/latest":163}],56:[function(require,module,exports){
+},{"mapbox-gl-style-spec/reference/latest":163}],56:[function(_dereq_,module,exports){
 'use strict';
 
-var util = require('../util/util');
-var interpolate = require('../util/interpolate');
+var util = _dereq_('../util/util');
+var interpolate = _dereq_('../util/interpolate');
 
 module.exports = StyleTransition;
 
@@ -9084,10 +9084,10 @@ function interpZoomTransitioned(from, to, t) {
     }
 }
 
-},{"../util/interpolate":101,"../util/util":107}],57:[function(require,module,exports){
+},{"../util/interpolate":101,"../util/util":107}],57:[function(_dereq_,module,exports){
 'use strict';
 
-module.exports = require('mapbox-gl-style-spec/lib/validate_style.min');
+module.exports = _dereq_('mapbox-gl-style-spec/lib/validate_style.min');
 
 module.exports.emitErrors = function throwErrors(emitter, errors) {
     if (errors && errors.length) {
@@ -9108,10 +9108,10 @@ module.exports.throwErrors = function throwErrors(emitter, errors) {
     }
 };
 
-},{"mapbox-gl-style-spec/lib/validate_style.min":162}],58:[function(require,module,exports){
+},{"mapbox-gl-style-spec/lib/validate_style.min":162}],58:[function(_dereq_,module,exports){
 'use strict';
 
-var Point = require('point-geometry');
+var Point = _dereq_('point-geometry');
 
 module.exports = Anchor;
 
@@ -9131,7 +9131,7 @@ Anchor.prototype.clone = function() {
     return new Anchor(this.x, this.y, this.angle, this.segment);
 };
 
-},{"point-geometry":170}],59:[function(require,module,exports){
+},{"point-geometry":170}],59:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = checkMaxAngle;
@@ -9211,10 +9211,10 @@ function checkMaxAngle(line, anchor, labelLength, windowSize, maxAngle) {
     return true;
 }
 
-},{}],60:[function(require,module,exports){
+},{}],60:[function(_dereq_,module,exports){
 'use strict';
 
-var Point = require('point-geometry');
+var Point = _dereq_('point-geometry');
 
 module.exports = clipLine;
 
@@ -9285,12 +9285,12 @@ function clipLine(lines, x1, y1, x2, y2) {
     return clippedLines;
 }
 
-},{"point-geometry":170}],61:[function(require,module,exports){
+},{"point-geometry":170}],61:[function(_dereq_,module,exports){
 'use strict';
 
-var StructArrayType = require('../util/struct_array');
-var util = require('../util/util');
-var Point = require('point-geometry');
+var StructArrayType = _dereq_('../util/struct_array');
+var util = _dereq_('../util/util');
+var Point = _dereq_('point-geometry');
 
 /**
  * A collision box represents an area of the map that that is covered by a
@@ -9366,7 +9366,7 @@ util.extendAll(CollisionBoxArray.prototype.StructType.prototype, {
     }
 });
 
-},{"../util/struct_array":105,"../util/util":107,"point-geometry":170}],62:[function(require,module,exports){
+},{"../util/struct_array":105,"../util/util":107,"point-geometry":170}],62:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = CollisionFeature;
@@ -9500,12 +9500,12 @@ CollisionFeature.prototype._addLineCollisionBoxes = function(collisionBoxArray, 
     return bboxes;
 };
 
-},{}],63:[function(require,module,exports){
+},{}],63:[function(_dereq_,module,exports){
 'use strict';
 
-var Point = require('point-geometry');
-var EXTENT = require('../data/bucket').EXTENT;
-var Grid = require('grid-index');
+var Point = _dereq_('point-geometry');
+var EXTENT = _dereq_('../data/bucket').EXTENT;
+var Grid = _dereq_('grid-index');
 
 module.exports = CollisionTile;
 
@@ -9801,12 +9801,12 @@ CollisionTile.prototype.insertCollisionFeature = function(collisionFeature, minP
     }
 };
 
-},{"../data/bucket":1,"grid-index":138,"point-geometry":170}],64:[function(require,module,exports){
+},{"../data/bucket":1,"grid-index":138,"point-geometry":170}],64:[function(_dereq_,module,exports){
 'use strict';
 
-var interpolate = require('../util/interpolate');
-var Anchor = require('../symbol/anchor');
-var checkMaxAngle = require('./check_max_angle');
+var interpolate = _dereq_('../util/interpolate');
+var Anchor = _dereq_('../symbol/anchor');
+var checkMaxAngle = _dereq_('./check_max_angle');
 
 module.exports = getAnchors;
 
@@ -9905,11 +9905,11 @@ function resample(line, offset, spacing, angleWindowSize, maxAngle, labelLength,
     return anchors;
 }
 
-},{"../symbol/anchor":58,"../util/interpolate":101,"./check_max_angle":59}],65:[function(require,module,exports){
+},{"../symbol/anchor":58,"../util/interpolate":101,"./check_max_angle":59}],65:[function(_dereq_,module,exports){
 'use strict';
 
-var ShelfPack = require('shelf-pack');
-var util = require('../util/util');
+var ShelfPack = _dereq_('shelf-pack');
+var util = _dereq_('../util/util');
 
 module.exports = GlyphAtlas;
 function GlyphAtlas(width, height) {
@@ -10072,14 +10072,14 @@ GlyphAtlas.prototype.updateTexture = function(gl) {
     }
 };
 
-},{"../util/util":107,"shelf-pack":173}],66:[function(require,module,exports){
+},{"../util/util":107,"shelf-pack":173}],66:[function(_dereq_,module,exports){
 'use strict';
 
-var normalizeURL = require('../util/mapbox').normalizeGlyphsURL;
-var getArrayBuffer = require('../util/ajax').getArrayBuffer;
-var Glyphs = require('../util/glyphs');
-var GlyphAtlas = require('../symbol/glyph_atlas');
-var Protobuf = require('pbf');
+var normalizeURL = _dereq_('../util/mapbox').normalizeGlyphsURL;
+var getArrayBuffer = _dereq_('../util/ajax').getArrayBuffer;
+var Glyphs = _dereq_('../util/glyphs');
+var GlyphAtlas = _dereq_('../symbol/glyph_atlas');
+var Protobuf = _dereq_('pbf');
 
 module.exports = GlyphSource;
 
@@ -10214,7 +10214,7 @@ function glyphUrl(fontstack, range, url, subdomains) {
         .replace('{range}', range);
 }
 
-},{"../symbol/glyph_atlas":65,"../util/ajax":91,"../util/glyphs":100,"../util/mapbox":104,"pbf":168}],67:[function(require,module,exports){
+},{"../symbol/glyph_atlas":65,"../util/ajax":91,"../util/glyphs":100,"../util/mapbox":104,"pbf":168}],67:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = function (features, textFeatures, geometries) {
@@ -10305,10 +10305,10 @@ module.exports = function (features, textFeatures, geometries) {
     };
 };
 
-},{}],68:[function(require,module,exports){
+},{}],68:[function(_dereq_,module,exports){
 'use strict';
 
-var Point = require('point-geometry');
+var Point = _dereq_('point-geometry');
 
 module.exports = {
     getIconQuads: getIconQuads,
@@ -10559,10 +10559,10 @@ function getSegmentGlyphs(glyphs, anchor, offset, line, segment, forward) {
     return placementScale;
 }
 
-},{"point-geometry":170}],69:[function(require,module,exports){
+},{"point-geometry":170}],69:[function(_dereq_,module,exports){
 'use strict';
 
-var resolveTokens = require('../util/token');
+var resolveTokens = _dereq_('../util/token');
 
 module.exports = resolveText;
 
@@ -10602,7 +10602,7 @@ function resolveText(features, layoutProperties, codepoints) {
     return textFeatures;
 }
 
-},{"../util/token":106}],70:[function(require,module,exports){
+},{"../util/token":106}],70:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = {
@@ -10783,12 +10783,12 @@ function PositionedIcon(image, top, bottom, left, right) {
     this.right = right;
 }
 
-},{}],71:[function(require,module,exports){
+},{}],71:[function(_dereq_,module,exports){
 'use strict';
 
-var ShelfPack = require('shelf-pack');
-var browser = require('../util/browser');
-var util = require('../util/util');
+var ShelfPack = _dereq_('shelf-pack');
+var browser = _dereq_('../util/browser');
+var util = _dereq_('../util/util');
 
 module.exports = SpriteAtlas;
 function SpriteAtlas(width, height) {
@@ -11016,12 +11016,12 @@ function AtlasImage(rect, width, height, sdf, pixelRatio) {
     this.pixelRatio = pixelRatio;
 }
 
-},{"../util/browser":92,"../util/util":107,"shelf-pack":173}],72:[function(require,module,exports){
+},{"../util/browser":92,"../util/util":107,"shelf-pack":173}],72:[function(_dereq_,module,exports){
 'use strict';
 
-var StructArrayType = require('../util/struct_array');
-var util = require('../util/util');
-var Point = require('point-geometry');
+var StructArrayType = _dereq_('../util/struct_array');
+var util = _dereq_('../util/util');
+var Point = _dereq_('point-geometry');
 
 /*
  *
@@ -11061,13 +11061,13 @@ util.extendAll(SymbolInstancesArray.prototype.StructType.prototype, {
 
 
 
-},{"../util/struct_array":105,"../util/util":107,"point-geometry":170}],73:[function(require,module,exports){
+},{"../util/struct_array":105,"../util/util":107,"point-geometry":170}],73:[function(_dereq_,module,exports){
 'use strict';
 
-var StructArrayType = require('../util/struct_array');
-var util = require('../util/util');
-var Point = require('point-geometry');
-var SymbolQuad = require('./quads').SymbolQuad;
+var StructArrayType = _dereq_('../util/struct_array');
+var util = _dereq_('../util/util');
+var Point = _dereq_('point-geometry');
+var SymbolQuad = _dereq_('./quads').SymbolQuad;
 
 // notes from ansis on slack:
 // it would be best if they are added to a buffer in advance so that they are only created once. There would be a separate buffer with all the individual collision boxes and then SymbolInstance would store the beginning and end indexes of a feature's collisionboxes. CollisionFeature wouldn't really exist as a standalone thing, it would just be a range of boxes in the big collision box buffer
@@ -11132,20 +11132,20 @@ util.extendAll(SymbolQuadsArray.prototype.StructType.prototype, {
 });
 
 
-},{"../util/struct_array":105,"../util/util":107,"./quads":68,"point-geometry":170}],74:[function(require,module,exports){
+},{"../util/struct_array":105,"../util/util":107,"./quads":68,"point-geometry":170}],74:[function(_dereq_,module,exports){
 'use strict';
 
-var DOM = require('../util/dom');
-var Point = require('point-geometry');
+var DOM = _dereq_('../util/dom');
+var Point = _dereq_('point-geometry');
 
 var handlers = {
-    scrollZoom: require('./handler/scroll_zoom'),
-    boxZoom: require('./handler/box_zoom'),
-    dragRotate: require('./handler/drag_rotate'),
-    dragPan: require('./handler/drag_pan'),
-    keyboard: require('./handler/keyboard'),
-    doubleClickZoom: require('./handler/dblclick_zoom'),
-    touchZoomRotate: require('./handler/touch_zoom_rotate')
+    scrollZoom: _dereq_('./handler/scroll_zoom'),
+    boxZoom: _dereq_('./handler/box_zoom'),
+    dragRotate: _dereq_('./handler/drag_rotate'),
+    dragPan: _dereq_('./handler/drag_pan'),
+    keyboard: _dereq_('./handler/keyboard'),
+    doubleClickZoom: _dereq_('./handler/dblclick_zoom'),
+    touchZoomRotate: _dereq_('./handler/touch_zoom_rotate')
 };
 
 module.exports = function bindHandlers(map, bindOptions, mapOptions) {
@@ -11276,15 +11276,15 @@ module.exports = function bindHandlers(map, bindOptions, mapOptions) {
     }
 };
 
-},{"../util/dom":95,"./handler/box_zoom":80,"./handler/dblclick_zoom":81,"./handler/drag_pan":82,"./handler/drag_rotate":83,"./handler/keyboard":84,"./handler/scroll_zoom":85,"./handler/touch_zoom_rotate":86,"point-geometry":170}],75:[function(require,module,exports){
+},{"../util/dom":95,"./handler/box_zoom":80,"./handler/dblclick_zoom":81,"./handler/drag_pan":82,"./handler/drag_rotate":83,"./handler/keyboard":84,"./handler/scroll_zoom":85,"./handler/touch_zoom_rotate":86,"point-geometry":170}],75:[function(_dereq_,module,exports){
 'use strict';
 
-var util = require('../util/util');
-var interpolate = require('../util/interpolate');
-var browser = require('../util/browser');
-var LngLat = require('../geo/lng_lat');
-var LngLatBounds = require('../geo/lng_lat_bounds');
-var Point = require('point-geometry');
+var util = _dereq_('../util/util');
+var interpolate = _dereq_('../util/interpolate');
+var browser = _dereq_('../util/browser');
+var LngLat = _dereq_('../geo/lng_lat');
+var LngLatBounds = _dereq_('../geo/lng_lat_bounds');
+var Point = _dereq_('point-geometry');
 
 /**
  * Options common to {@link Map#jumpTo}, {@link Map#easeTo}, and {@link Map#flyTo},
@@ -12055,12 +12055,12 @@ util.extend(Camera.prototype, /** @lends Map.prototype */{
  * @property {EventData} data Original event data
  */
 
-},{"../geo/lng_lat":10,"../geo/lng_lat_bounds":11,"../util/browser":92,"../util/interpolate":101,"../util/util":107,"point-geometry":170}],76:[function(require,module,exports){
+},{"../geo/lng_lat":10,"../geo/lng_lat_bounds":11,"../util/browser":92,"../util/interpolate":101,"../util/util":107,"point-geometry":170}],76:[function(_dereq_,module,exports){
 'use strict';
 
-var Control = require('./control');
-var DOM = require('../../util/dom');
-var util = require('../../util/util');
+var Control = _dereq_('./control');
+var DOM = _dereq_('../../util/dom');
+var util = _dereq_('../../util/util');
 
 module.exports = Attribution;
 
@@ -12136,11 +12136,11 @@ Attribution.prototype = util.inherit(Control, {
     }
 });
 
-},{"../../util/dom":95,"../../util/util":107,"./control":77}],77:[function(require,module,exports){
+},{"../../util/dom":95,"../../util/util":107,"./control":77}],77:[function(_dereq_,module,exports){
 'use strict';
 
-var util = require('../../util/util');
-var Evented = require('../../util/evented');
+var util = _dereq_('../../util/util');
+var Evented = _dereq_('../../util/evented');
 module.exports = Control;
 
 /**
@@ -12191,13 +12191,13 @@ Control.prototype = {
 
 util.extend(Control.prototype, Evented);
 
-},{"../../util/evented":99,"../../util/util":107}],78:[function(require,module,exports){
+},{"../../util/evented":99,"../../util/util":107}],78:[function(_dereq_,module,exports){
 'use strict';
 
-var Control = require('./control');
-var browser = require('../../util/browser');
-var DOM = require('../../util/dom');
-var util = require('../../util/util');
+var Control = _dereq_('./control');
+var browser = _dereq_('../../util/browser');
+var DOM = _dereq_('../../util/dom');
+var util = _dereq_('../../util/util');
 
 module.exports = Geolocate;
 
@@ -12290,12 +12290,12 @@ Geolocate.prototype = util.inherit(Control, {
   *
   */
 
-},{"../../util/browser":92,"../../util/dom":95,"../../util/util":107,"./control":77}],79:[function(require,module,exports){
+},{"../../util/browser":92,"../../util/dom":95,"../../util/util":107,"./control":77}],79:[function(_dereq_,module,exports){
 'use strict';
 
-var Control = require('./control');
-var DOM = require('../../util/dom');
-var util = require('../../util/util');
+var Control = _dereq_('./control');
+var DOM = _dereq_('../../util/dom');
+var util = _dereq_('../../util/util');
 
 module.exports = Navigation;
 
@@ -12408,12 +12408,12 @@ function copyMouseEvent(e) {
 }
 
 
-},{"../../util/dom":95,"../../util/util":107,"./control":77}],80:[function(require,module,exports){
+},{"../../util/dom":95,"../../util/util":107,"./control":77}],80:[function(_dereq_,module,exports){
 'use strict';
 
-var DOM = require('../../util/dom'),
-    LngLatBounds = require('../../geo/lng_lat_bounds'),
-    util = require('../../util/util');
+var DOM = _dereq_('../../util/dom'),
+    LngLatBounds = _dereq_('../../geo/lng_lat_bounds'),
+    util = _dereq_('../../util/util');
 
 module.exports = BoxZoomHandler;
 
@@ -12584,7 +12584,7 @@ BoxZoomHandler.prototype = {
  * @property {EventData} data Original event data
  */
 
-},{"../../geo/lng_lat_bounds":11,"../../util/dom":95,"../../util/util":107}],81:[function(require,module,exports){
+},{"../../geo/lng_lat_bounds":11,"../../util/dom":95,"../../util/util":107}],81:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = DoubleClickZoomHandler;
@@ -12639,11 +12639,11 @@ DoubleClickZoomHandler.prototype = {
     }
 };
 
-},{}],82:[function(require,module,exports){
+},{}],82:[function(_dereq_,module,exports){
 'use strict';
 
-var DOM = require('../../util/dom'),
-    util = require('../../util/util');
+var DOM = _dereq_('../../util/dom'),
+    util = _dereq_('../../util/util');
 
 module.exports = DragPanHandler;
 
@@ -12869,12 +12869,12 @@ DragPanHandler.prototype = {
  * @property {EventData} data Original event data
  */
 
-},{"../../util/dom":95,"../../util/util":107}],83:[function(require,module,exports){
+},{"../../util/dom":95,"../../util/util":107}],83:[function(_dereq_,module,exports){
 'use strict';
 
-var DOM = require('../../util/dom'),
-    Point = require('point-geometry'),
-    util = require('../../util/util');
+var DOM = _dereq_('../../util/dom'),
+    Point = _dereq_('point-geometry'),
+    util = _dereq_('../../util/util');
 
 module.exports = DragRotateHandler;
 
@@ -13114,7 +13114,7 @@ DragRotateHandler.prototype = {
  * @property {EventData} data Original event data
  */
 
-},{"../../util/dom":95,"../../util/util":107,"point-geometry":170}],84:[function(require,module,exports){
+},{"../../util/dom":95,"../../util/util":107,"point-geometry":170}],84:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = KeyboardHandler;
@@ -13240,12 +13240,12 @@ KeyboardHandler.prototype = {
     }
 };
 
-},{}],85:[function(require,module,exports){
+},{}],85:[function(_dereq_,module,exports){
 'use strict';
 
-var DOM = require('../../util/dom'),
-    browser = require('../../util/browser'),
-    util = require('../../util/util');
+var DOM = _dereq_('../../util/dom'),
+    browser = _dereq_('../../util/browser'),
+    util = _dereq_('../../util/util');
 
 module.exports = ScrollZoomHandler;
 
@@ -13418,11 +13418,11 @@ ScrollZoomHandler.prototype = {
  * @property {EventData} data Original event data, if fired interactively
  */
 
-},{"../../util/browser":92,"../../util/dom":95,"../../util/util":107}],86:[function(require,module,exports){
+},{"../../util/browser":92,"../../util/dom":95,"../../util/util":107}],86:[function(_dereq_,module,exports){
 'use strict';
 
-var DOM = require('../../util/dom'),
-    util = require('../../util/util');
+var DOM = _dereq_('../../util/dom'),
+    util = _dereq_('../../util/util');
 
 module.exports = TouchZoomRotateHandler;
 
@@ -13627,7 +13627,7 @@ TouchZoomRotateHandler.prototype = {
     }
 };
 
-},{"../../util/dom":95,"../../util/util":107}],87:[function(require,module,exports){
+},{"../../util/dom":95,"../../util/util":107}],87:[function(_dereq_,module,exports){
 'use strict';
 
 /*
@@ -13639,7 +13639,7 @@ TouchZoomRotateHandler.prototype = {
  */
 module.exports = Hash;
 
-var util = require('../util/util');
+var util = _dereq_('../util/util');
 
 function Hash() {
     util.bindAll([
@@ -13702,30 +13702,30 @@ Hash.prototype = {
     }
 };
 
-},{"../util/util":107}],88:[function(require,module,exports){
+},{"../util/util":107}],88:[function(_dereq_,module,exports){
 'use strict';
 
-var Canvas = require('../util/canvas');
-var util = require('../util/util');
-var browser = require('../util/browser');
-var window = require('../util/browser').window;
-var Evented = require('../util/evented');
-var DOM = require('../util/dom');
+var Canvas = _dereq_('../util/canvas');
+var util = _dereq_('../util/util');
+var browser = _dereq_('../util/browser');
+var window = _dereq_('../util/browser').window;
+var Evented = _dereq_('../util/evented');
+var DOM = _dereq_('../util/dom');
 
-var Style = require('../style/style');
-var AnimationLoop = require('../style/animation_loop');
-var Painter = require('../render/painter');
+var Style = _dereq_('../style/style');
+var AnimationLoop = _dereq_('../style/animation_loop');
+var Painter = _dereq_('../render/painter');
 
-var Transform = require('../geo/transform');
-var Hash = require('./hash');
+var Transform = _dereq_('../geo/transform');
+var Hash = _dereq_('./hash');
 
-var bindHandlers = require('./bind_handlers');
+var bindHandlers = _dereq_('./bind_handlers');
 
-var Camera = require('./camera');
-var LngLat = require('../geo/lng_lat');
-var LngLatBounds = require('../geo/lng_lat_bounds');
-var Point = require('point-geometry');
-var Attribution = require('./control/attribution');
+var Camera = _dereq_('./camera');
+var LngLat = _dereq_('../geo/lng_lat');
+var LngLatBounds = _dereq_('../geo/lng_lat_bounds');
+var Point = _dereq_('point-geometry');
+var Attribution = _dereq_('./control/attribution');
 
 var defaultMinZoom = 0;
 var defaultMaxZoom = 20;
@@ -15044,15 +15044,15 @@ function removeNode(node) {
    * @property {EventData} data Original event data, if fired interactively
    */
 
-},{"../geo/lng_lat":10,"../geo/lng_lat_bounds":11,"../geo/transform":12,"../render/painter":26,"../style/animation_loop":42,"../style/style":45,"../util/browser":92,"../util/canvas":93,"../util/dom":95,"../util/evented":99,"../util/util":107,"./bind_handlers":74,"./camera":75,"./control/attribution":76,"./hash":87,"point-geometry":170}],89:[function(require,module,exports){
+},{"../geo/lng_lat":10,"../geo/lng_lat_bounds":11,"../geo/transform":12,"../render/painter":26,"../style/animation_loop":42,"../style/style":45,"../util/browser":92,"../util/canvas":93,"../util/dom":95,"../util/evented":99,"../util/util":107,"./bind_handlers":74,"./camera":75,"./control/attribution":76,"./hash":87,"point-geometry":170}],89:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = Popup;
 
-var util = require('../util/util');
-var Evented = require('../util/evented');
-var DOM = require('../util/dom');
-var LngLat = require('../geo/lng_lat');
+var util = _dereq_('../util/util');
+var Evented = _dereq_('../util/evented');
+var DOM = _dereq_('../util/dom');
+var LngLat = _dereq_('../geo/lng_lat');
 
 /**
  * Creates a popup component
@@ -15276,7 +15276,7 @@ Popup.prototype = util.inherit(Evented, /** @lends Popup.prototype */{
     }
 });
 
-},{"../geo/lng_lat":10,"../util/dom":95,"../util/evented":99,"../util/util":107}],90:[function(require,module,exports){
+},{"../geo/lng_lat":10,"../util/dom":95,"../util/evented":99,"../util/util":107}],90:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = Actor;
@@ -15341,7 +15341,7 @@ Actor.prototype.postMessage = function(message, transferList) {
     this.target.postMessage(message, transferList);
 };
 
-},{}],91:[function(require,module,exports){
+},{}],91:[function(_dereq_,module,exports){
 'use strict';
 
 exports.getJSON = function(url, callback) {
@@ -15431,7 +15431,7 @@ exports.getVideo = function(urls, callback) {
     return video;
 };
 
-},{}],92:[function(require,module,exports){
+},{}],92:[function(_dereq_,module,exports){
 'use strict';
 
 /**
@@ -15508,7 +15508,7 @@ exports.timed = function (fn, dur, ctx) {
  *   expected (i.e. a software renderer would be used)
  * @return {boolean}
  */
-exports.supported = require('mapbox-gl-js-supported');
+exports.supported = _dereq_('mapbox-gl-js-supported');
 
 exports.hardwareConcurrency = navigator.hardwareConcurrency || 4;
 
@@ -15526,11 +15526,11 @@ webpImgTest.src = 'data:image/webp;base64,UklGRh4AAABXRUJQVlA4TBEAAAAvAQAAAAfQ//
 
 exports.supportsGeolocation = !!navigator.geolocation;
 
-},{"mapbox-gl-js-supported":140}],93:[function(require,module,exports){
+},{"mapbox-gl-js-supported":140}],93:[function(_dereq_,module,exports){
 'use strict';
 
-var util = require('../util');
-var isSupported = require('mapbox-gl-js-supported');
+var util = _dereq_('../util');
+var isSupported = _dereq_('mapbox-gl-js-supported');
 
 module.exports = Canvas;
 
@@ -15570,11 +15570,11 @@ Canvas.prototype.getElement = function() {
     return this.canvas;
 };
 
-},{"../util":107,"mapbox-gl-js-supported":140}],94:[function(require,module,exports){
+},{"../util":107,"mapbox-gl-js-supported":140}],94:[function(_dereq_,module,exports){
 'use strict';
 
-var Actor = require('../actor');
-var WebWorkify = require('webworkify');
+var Actor = _dereq_('../actor');
+var WebWorkify = _dereq_('webworkify');
 
 module.exports = Dispatcher;
 
@@ -15582,7 +15582,7 @@ function Dispatcher(length, parent) {
     this.actors = [];
     this.currentActor = 0;
     for (var i = 0; i < length; i++) {
-        var worker = new WebWorkify(require('../../source/worker'));
+        var worker = new WebWorkify(_dereq_('../../source/worker'));
         var actor = new Actor(worker, parent);
         actor.name = "Worker " + i;
         this.actors.push(actor);
@@ -15614,10 +15614,10 @@ Dispatcher.prototype = {
     }
 };
 
-},{"../../source/worker":40,"../actor":90,"webworkify":187}],95:[function(require,module,exports){
+},{"../../source/worker":40,"../actor":90,"webworkify":187}],95:[function(_dereq_,module,exports){
 'use strict';
 
-var Point = require('point-geometry');
+var Point = _dereq_('point-geometry');
 
 exports.create = function (tagName, className, container) {
     var el = document.createElement(tagName);
@@ -15689,10 +15689,10 @@ exports.touchPos = function (el, e) {
     return points;
 };
 
-},{"point-geometry":170}],96:[function(require,module,exports){
+},{"point-geometry":170}],96:[function(_dereq_,module,exports){
 'use strict';
 
-var quickselect = require('quickselect');
+var quickselect = _dereq_('quickselect');
 
 // classifies an array of rings into polygons with outer rings and holes
 module.exports = function classifyRings(rings, maxRings) {
@@ -15749,7 +15749,7 @@ function calculateSignedArea(ring) {
     return sum;
 }
 
-},{"quickselect":171}],97:[function(require,module,exports){
+},{"quickselect":171}],97:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = {
@@ -15757,10 +15757,10 @@ module.exports = {
     REQUIRE_ACCESS_TOKEN: true
 };
 
-},{}],98:[function(require,module,exports){
+},{}],98:[function(_dereq_,module,exports){
 'use strict';
 
-var assert = require('assert');
+var assert = _dereq_('assert');
 
 module.exports = DictionaryCoder;
 
@@ -15784,10 +15784,10 @@ DictionaryCoder.prototype.decode = function(n) {
     return this._numberToString[n];
 };
 
-},{"assert":109}],99:[function(require,module,exports){
+},{"assert":109}],99:[function(_dereq_,module,exports){
 'use strict';
 
-var util = require('./util');
+var util = _dereq_('./util');
 
 /**
  * Methods mixed in to other classes for event capabilities.
@@ -15892,7 +15892,7 @@ var Evented = {
 
 module.exports = Evented;
 
-},{"./util":107}],100:[function(require,module,exports){
+},{"./util":107}],100:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = Glyphs;
@@ -15927,7 +15927,7 @@ function readGlyph(tag, glyph, pbf) {
     else if (tag === 7) glyph.advance = pbf.readVarint();
 }
 
-},{}],101:[function(require,module,exports){
+},{}],101:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = interpolate;
@@ -15968,7 +15968,7 @@ interpolate.array = function(from, to, t) {
     });
 };
 
-},{}],102:[function(require,module,exports){
+},{}],102:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = {
@@ -16134,7 +16134,7 @@ function polygonContainsPoint(ring, p) {
     return c;
 }
 
-},{}],103:[function(require,module,exports){
+},{}],103:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = LRUCache;
@@ -16259,11 +16259,11 @@ LRUCache.prototype.setMaxSize = function(max) {
     return this;
 };
 
-},{}],104:[function(require,module,exports){
+},{}],104:[function(_dereq_,module,exports){
 'use strict';
 
-var config = require('./config');
-var browser = require('./browser');
+var config = _dereq_('./config');
+var browser = _dereq_('./browser');
 
 function normalizeURL(url, pathPrefix, accessToken) {
     accessToken = accessToken || config.ACCESS_TOKEN;
@@ -16340,12 +16340,12 @@ module.exports.normalizeTileURL = function(url, sourceUrl, tileSize) {
     return url.replace(/\.((?:png|jpg)\d*)(?=$|\?)/, browser.devicePixelRatio >= 2 || tileSize === 512 ? '@2x.' + extension : '.' + extension);
 };
 
-},{"./browser":92,"./config":97}],105:[function(require,module,exports){
+},{"./browser":92,"./config":97}],105:[function(_dereq_,module,exports){
 'use strict';
 
 // Note: all "sizes" are measured in bytes
 
-var assert = require('assert');
+var assert = _dereq_('assert');
 
 module.exports = StructArrayType;
 
@@ -16680,7 +16680,7 @@ StructArray.prototype.toArray = function(startIndex, endIndex) {
     return array;
 };
 
-},{"assert":109}],106:[function(require,module,exports){
+},{"assert":109}],106:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = resolveTokens;
@@ -16699,11 +16699,11 @@ function resolveTokens(properties, text) {
     });
 }
 
-},{}],107:[function(require,module,exports){
+},{}],107:[function(_dereq_,module,exports){
 'use strict';
 
-var UnitBezier = require('unitbezier');
-var Coordinate = require('../geo/coordinate');
+var UnitBezier = _dereq_('unitbezier');
+var Coordinate = _dereq_('../geo/coordinate');
 
 /**
  * Given a value `t` that varies between 0 and 1, return
@@ -17157,7 +17157,7 @@ exports.warnOnce = function(message) {
     }
 };
 
-},{"../geo/coordinate":9,"unitbezier":179}],108:[function(require,module,exports){
+},{"../geo/coordinate":9,"unitbezier":179}],108:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = Feature;
@@ -17202,7 +17202,7 @@ Feature.prototype = {
     }
 };
 
-},{}],109:[function(require,module,exports){
+},{}],109:[function(_dereq_,module,exports){
 // http://wiki.commonjs.org/wiki/Unit_Testing/1.0
 //
 // THIS IS NOT TESTED NOR LIKELY TO WORK OUTSIDE V8!
@@ -17230,7 +17230,7 @@ Feature.prototype = {
 // when used in node, this will actually load the util module we depend on
 // versus loading the builtin util module as happens otherwise
 // this is a bug in node module loading as far as I am concerned
-var util = require('util/');
+var util = _dereq_('util/');
 
 var pSlice = Array.prototype.slice;
 var hasOwn = Object.prototype.hasOwnProperty;
@@ -17563,7 +17563,7 @@ var objectKeys = Object.keys || function (obj) {
   return keys;
 };
 
-},{"util/":114}],110:[function(require,module,exports){
+},{"util/":114}],110:[function(_dereq_,module,exports){
 if (typeof Object.create === 'function') {
   // implementation from standard node.js 'util' module
   module.exports = function inherits(ctor, superCtor) {
@@ -17588,7 +17588,7 @@ if (typeof Object.create === 'function') {
   }
 }
 
-},{}],111:[function(require,module,exports){
+},{}],111:[function(_dereq_,module,exports){
 (function (process){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -17815,9 +17815,9 @@ var substr = 'ab'.substr(-1) === 'b'
     }
 ;
 
-}).call(this,require('_process'))
+}).call(this,_dereq_('_process'))
 
-},{"_process":112}],112:[function(require,module,exports){
+},{"_process":112}],112:[function(_dereq_,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
@@ -17913,14 +17913,14 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],113:[function(require,module,exports){
+},{}],113:[function(_dereq_,module,exports){
 module.exports = function isBuffer(arg) {
   return arg && typeof arg === 'object'
     && typeof arg.copy === 'function'
     && typeof arg.fill === 'function'
     && typeof arg.readUInt8 === 'function';
 }
-},{}],114:[function(require,module,exports){
+},{}],114:[function(_dereq_,module,exports){
 (function (process,global){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -18447,7 +18447,7 @@ function isPrimitive(arg) {
 }
 exports.isPrimitive = isPrimitive;
 
-exports.isBuffer = require('./support/isBuffer');
+exports.isBuffer = _dereq_('./support/isBuffer');
 
 function objectToString(o) {
   return Object.prototype.toString.call(o);
@@ -18491,7 +18491,7 @@ exports.log = function() {
  *     prototype.
  * @param {function} superCtor Constructor function to inherit prototype from.
  */
-exports.inherits = require('inherits');
+exports.inherits = _dereq_('inherits');
 
 exports._extend = function(origin, add) {
   // Don't do anything if add isn't an object
@@ -18509,9 +18509,9 @@ function hasOwnProperty(obj, prop) {
   return Object.prototype.hasOwnProperty.call(obj, prop);
 }
 
-}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+}).call(this,_dereq_('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 
-},{"./support/isBuffer":113,"_process":112,"inherits":110}],115:[function(require,module,exports){
+},{"./support/isBuffer":113,"_process":112,"inherits":110}],115:[function(_dereq_,module,exports){
 // (c) Dean McNamee <dean@gmail.com>, 2012.
 //
 // https://github.com/deanm/css-color-parser-js
@@ -18713,7 +18713,7 @@ function parseCSSColor(css_str) {
 
 try { exports.parseCSSColor = parseCSSColor } catch(e) { }
 
-},{}],116:[function(require,module,exports){
+},{}],116:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = earcut;
@@ -19359,7 +19359,7 @@ earcut.flatten = function (data) {
     return result;
 };
 
-},{}],117:[function(require,module,exports){
+},{}],117:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = createFilter;
@@ -19441,8 +19441,8 @@ function compare(a, b) {
     return a < b ? -1 : a > b ? 1 : 0;
 }
 
-},{}],118:[function(require,module,exports){
-var geojsonArea = require('geojson-area');
+},{}],118:[function(_dereq_,module,exports){
+var geojsonArea = _dereq_('geojson-area');
 
 module.exports = rewind;
 
@@ -19492,8 +19492,8 @@ function cw(_) {
     return geojsonArea.ring(_) >= 0;
 }
 
-},{"geojson-area":119}],119:[function(require,module,exports){
-var wgs84 = require('wgs84');
+},{"geojson-area":119}],119:[function(_dereq_,module,exports){
+var wgs84 = _dereq_('wgs84');
 
 module.exports.geometry = geometry;
 module.exports.ring = ringArea;
@@ -19558,12 +19558,12 @@ function rad(_) {
     return _ * Math.PI / 180;
 }
 
-},{"wgs84":120}],120:[function(require,module,exports){
+},{"wgs84":120}],120:[function(_dereq_,module,exports){
 module.exports.RADIUS = 6378137;
 module.exports.FLATTENING = 1/298.257223563;
 module.exports.POLAR_RADIUS = 6356752.3142;
 
-},{}],121:[function(require,module,exports){
+},{}],121:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = clip;
@@ -19716,12 +19716,12 @@ function newSlice(slices, slice, area, dist) {
     return [];
 }
 
-},{}],122:[function(require,module,exports){
+},{}],122:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = convert;
 
-var simplify = require('./simplify');
+var simplify = _dereq_('./simplify');
 
 // converts GeoJSON feature into an intermediate projected JSON vector format with simplification data
 
@@ -19862,16 +19862,16 @@ function calcRingBBox(min, max, points) {
     }
 }
 
-},{"./simplify":124}],123:[function(require,module,exports){
+},{"./simplify":124}],123:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = geojsonvt;
 
-var convert = require('./convert'),     // GeoJSON conversion and preprocessing
-    transform = require('./transform'), // coordinate transformation
-    clip = require('./clip'),           // stripe clipping algorithm
-    wrap = require('./wrap'),           // date line processing
-    createTile = require('./tile');     // final simplified tile generation
+var convert = _dereq_('./convert'),     // GeoJSON conversion and preprocessing
+    transform = _dereq_('./transform'), // coordinate transformation
+    clip = _dereq_('./clip'),           // stripe clipping algorithm
+    wrap = _dereq_('./wrap'),           // date line processing
+    createTile = _dereq_('./tile');     // final simplified tile generation
 
 
 function geojsonvt(data, options) {
@@ -20104,7 +20104,7 @@ function isClippedSquare(tile, extent, buffer) {
     return true;
 }
 
-},{"./clip":121,"./convert":122,"./tile":125,"./transform":126,"./wrap":127}],124:[function(require,module,exports){
+},{"./clip":121,"./convert":122,"./tile":125,"./transform":126,"./wrap":127}],124:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = simplify;
@@ -20180,7 +20180,7 @@ function getSqSegDist(p, a, b) {
     return dx * dx + dy * dy;
 }
 
-},{}],125:[function(require,module,exports){
+},{}],125:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = createTile;
@@ -20267,7 +20267,7 @@ function addFeature(tile, feature, tolerance, noSimplify) {
     }
 }
 
-},{}],126:[function(require,module,exports){
+},{}],126:[function(_dereq_,module,exports){
 'use strict';
 
 exports.tile = transformTile;
@@ -20310,10 +20310,10 @@ function transformPoint(p, extent, z2, tx, ty) {
     return [x, y];
 }
 
-},{}],127:[function(require,module,exports){
+},{}],127:[function(_dereq_,module,exports){
 'use strict';
 
-var clip = require('./clip');
+var clip = _dereq_('./clip');
 
 module.exports = wrap;
 
@@ -20373,7 +20373,7 @@ function shiftCoords(points, offset) {
     return newPoints;
 }
 
-},{"./clip":121}],128:[function(require,module,exports){
+},{"./clip":121}],128:[function(_dereq_,module,exports){
 /**
  * @fileoverview gl-matrix - High performance matrix and vector operations
  * @author Brandon Jones
@@ -20402,16 +20402,16 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE. */
 // END HEADER
 
-exports.glMatrix = require("./gl-matrix/common.js");
-exports.mat2 = require("./gl-matrix/mat2.js");
-exports.mat2d = require("./gl-matrix/mat2d.js");
-exports.mat3 = require("./gl-matrix/mat3.js");
-exports.mat4 = require("./gl-matrix/mat4.js");
-exports.quat = require("./gl-matrix/quat.js");
-exports.vec2 = require("./gl-matrix/vec2.js");
-exports.vec3 = require("./gl-matrix/vec3.js");
-exports.vec4 = require("./gl-matrix/vec4.js");
-},{"./gl-matrix/common.js":129,"./gl-matrix/mat2.js":130,"./gl-matrix/mat2d.js":131,"./gl-matrix/mat3.js":132,"./gl-matrix/mat4.js":133,"./gl-matrix/quat.js":134,"./gl-matrix/vec2.js":135,"./gl-matrix/vec3.js":136,"./gl-matrix/vec4.js":137}],129:[function(require,module,exports){
+exports.glMatrix = _dereq_("./gl-matrix/common.js");
+exports.mat2 = _dereq_("./gl-matrix/mat2.js");
+exports.mat2d = _dereq_("./gl-matrix/mat2d.js");
+exports.mat3 = _dereq_("./gl-matrix/mat3.js");
+exports.mat4 = _dereq_("./gl-matrix/mat4.js");
+exports.quat = _dereq_("./gl-matrix/quat.js");
+exports.vec2 = _dereq_("./gl-matrix/vec2.js");
+exports.vec3 = _dereq_("./gl-matrix/vec3.js");
+exports.vec4 = _dereq_("./gl-matrix/vec4.js");
+},{"./gl-matrix/common.js":129,"./gl-matrix/mat2.js":130,"./gl-matrix/mat2d.js":131,"./gl-matrix/mat3.js":132,"./gl-matrix/mat4.js":133,"./gl-matrix/quat.js":134,"./gl-matrix/vec2.js":135,"./gl-matrix/vec3.js":136,"./gl-matrix/vec4.js":137}],129:[function(_dereq_,module,exports){
 /* Copyright (c) 2015, Brandon Jones, Colin MacKenzie IV.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -20483,7 +20483,7 @@ glMatrix.equals = function(a, b) {
 
 module.exports = glMatrix;
 
-},{}],130:[function(require,module,exports){
+},{}],130:[function(_dereq_,module,exports){
 /* Copyright (c) 2015, Brandon Jones, Colin MacKenzie IV.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -20504,7 +20504,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE. */
 
-var glMatrix = require("./common.js");
+var glMatrix = _dereq_("./common.js");
 
 /**
  * @class 2x2 Matrix
@@ -20921,7 +20921,7 @@ mat2.multiplyScalarAndAdd = function(out, a, b, scale) {
 
 module.exports = mat2;
 
-},{"./common.js":129}],131:[function(require,module,exports){
+},{"./common.js":129}],131:[function(_dereq_,module,exports){
 /* Copyright (c) 2015, Brandon Jones, Colin MacKenzie IV.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -20942,7 +20942,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE. */
 
-var glMatrix = require("./common.js");
+var glMatrix = _dereq_("./common.js");
 
 /**
  * @class 2x3 Matrix
@@ -21392,7 +21392,7 @@ mat2d.equals = function (a, b) {
 
 module.exports = mat2d;
 
-},{"./common.js":129}],132:[function(require,module,exports){
+},{"./common.js":129}],132:[function(_dereq_,module,exports){
 /* Copyright (c) 2015, Brandon Jones, Colin MacKenzie IV.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -21413,7 +21413,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE. */
 
-var glMatrix = require("./common.js");
+var glMatrix = _dereq_("./common.js");
 
 /**
  * @class 3x3 Matrix
@@ -22140,7 +22140,7 @@ mat3.equals = function (a, b) {
 
 module.exports = mat3;
 
-},{"./common.js":129}],133:[function(require,module,exports){
+},{"./common.js":129}],133:[function(_dereq_,module,exports){
 /* Copyright (c) 2015, Brandon Jones, Colin MacKenzie IV.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -22161,7 +22161,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE. */
 
-var glMatrix = require("./common.js");
+var glMatrix = _dereq_("./common.js");
 
 /**
  * @class 4x4 Matrix
@@ -24278,7 +24278,7 @@ mat4.equals = function (a, b) {
 
 module.exports = mat4;
 
-},{"./common.js":129}],134:[function(require,module,exports){
+},{"./common.js":129}],134:[function(_dereq_,module,exports){
 /* Copyright (c) 2015, Brandon Jones, Colin MacKenzie IV.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -24299,10 +24299,10 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE. */
 
-var glMatrix = require("./common.js");
-var mat3 = require("./mat3.js");
-var vec3 = require("./vec3.js");
-var vec4 = require("./vec4.js");
+var glMatrix = _dereq_("./common.js");
+var mat3 = _dereq_("./mat3.js");
+var vec3 = _dereq_("./vec3.js");
+var vec4 = _dereq_("./vec4.js");
 
 /**
  * @class Quaternion
@@ -24880,7 +24880,7 @@ quat.equals = vec4.equals;
 
 module.exports = quat;
 
-},{"./common.js":129,"./mat3.js":132,"./vec3.js":136,"./vec4.js":137}],135:[function(require,module,exports){
+},{"./common.js":129,"./mat3.js":132,"./vec3.js":136,"./vec4.js":137}],135:[function(_dereq_,module,exports){
 /* Copyright (c) 2015, Brandon Jones, Colin MacKenzie IV.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -24901,7 +24901,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE. */
 
-var glMatrix = require("./common.js");
+var glMatrix = _dereq_("./common.js");
 
 /**
  * @class 2 Dimensional Vector
@@ -25469,7 +25469,7 @@ vec2.equals = function (a, b) {
 
 module.exports = vec2;
 
-},{"./common.js":129}],136:[function(require,module,exports){
+},{"./common.js":129}],136:[function(_dereq_,module,exports){
 /* Copyright (c) 2015, Brandon Jones, Colin MacKenzie IV.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -25490,7 +25490,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE. */
 
-var glMatrix = require("./common.js");
+var glMatrix = _dereq_("./common.js");
 
 /**
  * @class 3 Dimensional Vector
@@ -26248,7 +26248,7 @@ vec3.equals = function (a, b) {
 
 module.exports = vec3;
 
-},{"./common.js":129}],137:[function(require,module,exports){
+},{"./common.js":129}],137:[function(_dereq_,module,exports){
 /* Copyright (c) 2015, Brandon Jones, Colin MacKenzie IV.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -26269,7 +26269,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE. */
 
-var glMatrix = require("./common.js");
+var glMatrix = _dereq_("./common.js");
 
 /**
  * @class 4 Dimensional Vector
@@ -26859,7 +26859,7 @@ vec4.equals = function (a, b) {
 
 module.exports = vec4;
 
-},{"./common.js":129}],138:[function(require,module,exports){
+},{"./common.js":129}],138:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = GridIndex;
@@ -27018,7 +27018,7 @@ GridIndex.prototype.toArrayBuffer = function() {
     return array.buffer;
 };
 
-},{}],139:[function(require,module,exports){
+},{}],139:[function(_dereq_,module,exports){
 'use strict';
 
 function createFunction(parameters, defaultType) {
@@ -27185,7 +27185,7 @@ module.exports['piecewise-constant'] = function(parameters) {
     return createFunction(parameters, 'interval');
 };
 
-},{}],140:[function(require,module,exports){
+},{}],140:[function(_dereq_,module,exports){
 'use strict';
 
 if (typeof module !== 'undefined' && module.exports) {
@@ -27309,9 +27309,9 @@ function isWebGLSupported(failIfMajorPerformanceCaveat) {
     }
 }
 
-},{}],141:[function(require,module,exports){
+},{}],141:[function(_dereq_,module,exports){
 
-var path = require('path');
+var path = _dereq_('path');
 
 // readFileSync calls must be written out long-form for brfs.
 module.exports = {
@@ -27371,10 +27371,10 @@ module.exports = {
 
 module.exports.util = "float evaluate_zoom_function_1(const vec4 values, const float t) {\n    if (t < 1.0) {\n        return mix(values[0], values[1], t);\n    } else if (t < 2.0) {\n        return mix(values[1], values[2], t - 1.0);\n    } else {\n        return mix(values[2], values[3], t - 2.0);\n    }\n}\nvec4 evaluate_zoom_function_4(const vec4 value0, const vec4 value1, const vec4 value2, const vec4 value3, const float t) {\n    if (t < 1.0) {\n        return mix(value0, value1, t);\n    } else if (t < 2.0) {\n        return mix(value1, value2, t - 1.0);\n    } else {\n        return mix(value2, value3, t - 2.0);\n    }\n}\n";
 
-},{"path":111}],142:[function(require,module,exports){
+},{"path":111}],142:[function(_dereq_,module,exports){
 'use strict';
 
-var format = require('util').format;
+var format = _dereq_('util').format;
 
 function ValidationError(key, value /*, message, ...*/) {
     this.message = (
@@ -27389,7 +27389,7 @@ function ValidationError(key, value /*, message, ...*/) {
 
 module.exports = ValidationError;
 
-},{"util":114}],143:[function(require,module,exports){
+},{"util":114}],143:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = function (output) {
@@ -27402,7 +27402,7 @@ module.exports = function (output) {
     return output;
 };
 
-},{}],144:[function(require,module,exports){
+},{}],144:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = function getType(val) {
@@ -27421,7 +27421,7 @@ module.exports = function getType(val) {
     }
 };
 
-},{}],145:[function(require,module,exports){
+},{}],145:[function(_dereq_,module,exports){
 'use strict';
 
 // Turn jsonlint-lines-primitives objects into primitive objects
@@ -27433,12 +27433,12 @@ module.exports = function unbundle(value) {
     }
 };
 
-},{}],146:[function(require,module,exports){
+},{}],146:[function(_dereq_,module,exports){
 'use strict';
 
-var ValidationError = require('../error/validation_error');
-var getType = require('../util/get_type');
-var extend = require('../util/extend');
+var ValidationError = _dereq_('../error/validation_error');
+var getType = _dereq_('../util/get_type');
+var extend = _dereq_('../util/extend');
 
 // Main recursive validation function. Tracks:
 //
@@ -27451,24 +27451,24 @@ var extend = require('../util/extend');
 
 module.exports = function validate(options) {
 
-    var validateFunction = require('./validate_function');
-    var validateObject = require('./validate_object');
+    var validateFunction = _dereq_('./validate_function');
+    var validateObject = _dereq_('./validate_object');
     var VALIDATORS = {
         '*': function() {
             return [];
         },
-        'array': require('./validate_array'),
-        'boolean': require('./validate_boolean'),
-        'number': require('./validate_number'),
-        'color': require('./validate_color'),
-        'constants': require('./validate_constants'),
-        'enum': require('./validate_enum'),
-        'filter': require('./validate_filter'),
-        'function': require('./validate_function'),
-        'layer': require('./validate_layer'),
-        'object': require('./validate_object'),
-        'source': require('./validate_source'),
-        'string': require('./validate_string')
+        'array': _dereq_('./validate_array'),
+        'boolean': _dereq_('./validate_boolean'),
+        'number': _dereq_('./validate_number'),
+        'color': _dereq_('./validate_color'),
+        'constants': _dereq_('./validate_constants'),
+        'enum': _dereq_('./validate_enum'),
+        'filter': _dereq_('./validate_filter'),
+        'function': _dereq_('./validate_function'),
+        'layer': _dereq_('./validate_layer'),
+        'object': _dereq_('./validate_object'),
+        'source': _dereq_('./validate_source'),
+        'string': _dereq_('./validate_string')
     };
 
     var value = options.value;
@@ -27500,12 +27500,12 @@ module.exports = function validate(options) {
     }
 };
 
-},{"../error/validation_error":142,"../util/extend":143,"../util/get_type":144,"./validate_array":147,"./validate_boolean":148,"./validate_color":149,"./validate_constants":150,"./validate_enum":151,"./validate_filter":152,"./validate_function":153,"./validate_layer":155,"./validate_number":157,"./validate_object":158,"./validate_source":160,"./validate_string":161}],147:[function(require,module,exports){
+},{"../error/validation_error":142,"../util/extend":143,"../util/get_type":144,"./validate_array":147,"./validate_boolean":148,"./validate_color":149,"./validate_constants":150,"./validate_enum":151,"./validate_filter":152,"./validate_function":153,"./validate_layer":155,"./validate_number":157,"./validate_object":158,"./validate_source":160,"./validate_string":161}],147:[function(_dereq_,module,exports){
 'use strict';
 
-var getType = require('../util/get_type');
-var validate = require('./validate');
-var ValidationError = require('../error/validation_error');
+var getType = _dereq_('../util/get_type');
+var validate = _dereq_('./validate');
+var ValidationError = _dereq_('../error/validation_error');
 
 module.exports = function validateArray(options) {
     var array = options.value;
@@ -27554,11 +27554,11 @@ module.exports = function validateArray(options) {
     return errors;
 };
 
-},{"../error/validation_error":142,"../util/get_type":144,"./validate":146}],148:[function(require,module,exports){
+},{"../error/validation_error":142,"../util/get_type":144,"./validate":146}],148:[function(_dereq_,module,exports){
 'use strict';
 
-var getType = require('../util/get_type');
-var ValidationError = require('../error/validation_error');
+var getType = _dereq_('../util/get_type');
+var ValidationError = _dereq_('../error/validation_error');
 
 module.exports = function validateBoolean(options) {
     var value = options.value;
@@ -27572,12 +27572,12 @@ module.exports = function validateBoolean(options) {
     return [];
 };
 
-},{"../error/validation_error":142,"../util/get_type":144}],149:[function(require,module,exports){
+},{"../error/validation_error":142,"../util/get_type":144}],149:[function(_dereq_,module,exports){
 'use strict';
 
-var ValidationError = require('../error/validation_error');
-var getType = require('../util/get_type');
-var parseCSSColor = require('csscolorparser').parseCSSColor;
+var ValidationError = _dereq_('../error/validation_error');
+var getType = _dereq_('../util/get_type');
+var parseCSSColor = _dereq_('csscolorparser').parseCSSColor;
 
 module.exports = function validateColor(options) {
     var key = options.key;
@@ -27595,11 +27595,11 @@ module.exports = function validateColor(options) {
     return [];
 };
 
-},{"../error/validation_error":142,"../util/get_type":144,"csscolorparser":115}],150:[function(require,module,exports){
+},{"../error/validation_error":142,"../util/get_type":144,"csscolorparser":115}],150:[function(_dereq_,module,exports){
 'use strict';
 
-var ValidationError = require('../error/validation_error');
-var getType = require('../util/get_type');
+var ValidationError = _dereq_('../error/validation_error');
+var getType = _dereq_('../util/get_type');
 
 module.exports = function validateConstants(options) {
     var key = options.key;
@@ -27629,11 +27629,11 @@ module.exports = function validateConstants(options) {
 
 };
 
-},{"../error/validation_error":142,"../util/get_type":144}],151:[function(require,module,exports){
+},{"../error/validation_error":142,"../util/get_type":144}],151:[function(_dereq_,module,exports){
 'use strict';
 
-var ValidationError = require('../error/validation_error');
-var unbundle = require('../util/unbundle_jsonlint');
+var ValidationError = _dereq_('../error/validation_error');
+var unbundle = _dereq_('../util/unbundle_jsonlint');
 
 module.exports = function validateEnum(options) {
     var key = options.key;
@@ -27647,13 +27647,13 @@ module.exports = function validateEnum(options) {
     return errors;
 };
 
-},{"../error/validation_error":142,"../util/unbundle_jsonlint":145}],152:[function(require,module,exports){
+},{"../error/validation_error":142,"../util/unbundle_jsonlint":145}],152:[function(_dereq_,module,exports){
 'use strict';
 
-var ValidationError = require('../error/validation_error');
-var validateEnum = require('./validate_enum');
-var getType = require('../util/get_type');
-var unbundle = require('../util/unbundle_jsonlint');
+var ValidationError = _dereq_('../error/validation_error');
+var validateEnum = _dereq_('./validate_enum');
+var getType = _dereq_('../util/get_type');
+var unbundle = _dereq_('../util/unbundle_jsonlint');
 
 module.exports = function validateFilter(options) {
     var value = options.value;
@@ -27752,15 +27752,15 @@ module.exports = function validateFilter(options) {
     return errors;
 };
 
-},{"../error/validation_error":142,"../util/get_type":144,"../util/unbundle_jsonlint":145,"./validate_enum":151}],153:[function(require,module,exports){
+},{"../error/validation_error":142,"../util/get_type":144,"../util/unbundle_jsonlint":145,"./validate_enum":151}],153:[function(_dereq_,module,exports){
 'use strict';
 
-var ValidationError = require('../error/validation_error');
-var getType = require('../util/get_type');
-var validate = require('./validate');
-var validateObject = require('./validate_object');
-var validateArray = require('./validate_array');
-var validateNumber = require('./validate_number');
+var ValidationError = _dereq_('../error/validation_error');
+var getType = _dereq_('../util/get_type');
+var validate = _dereq_('./validate');
+var validateObject = _dereq_('./validate_object');
+var validateArray = _dereq_('./validate_array');
+var validateNumber = _dereq_('./validate_number');
 
 module.exports = function validateFunction(options) {
     var originalValueSpec = options.valueSpec;
@@ -27876,11 +27876,11 @@ module.exports = function validateFunction(options) {
 
 };
 
-},{"../error/validation_error":142,"../util/get_type":144,"./validate":146,"./validate_array":147,"./validate_number":157,"./validate_object":158}],154:[function(require,module,exports){
+},{"../error/validation_error":142,"../util/get_type":144,"./validate":146,"./validate_array":147,"./validate_number":157,"./validate_object":158}],154:[function(_dereq_,module,exports){
 'use strict';
 
-var ValidationError = require('../error/validation_error');
-var validateString = require('./validate_string');
+var ValidationError = _dereq_('../error/validation_error');
+var validateString = _dereq_('./validate_string');
 
 module.exports = function(options) {
     var value = options.value;
@@ -27900,16 +27900,16 @@ module.exports = function(options) {
     return errors;
 };
 
-},{"../error/validation_error":142,"./validate_string":161}],155:[function(require,module,exports){
+},{"../error/validation_error":142,"./validate_string":161}],155:[function(_dereq_,module,exports){
 'use strict';
 
-var ValidationError = require('../error/validation_error');
-var unbundle = require('../util/unbundle_jsonlint');
-var validateObject = require('./validate_object');
-var validateFilter = require('./validate_filter');
-var validatePaintProperty = require('./validate_paint_property');
-var validateLayoutProperty = require('./validate_layout_property');
-var extend = require('../util/extend');
+var ValidationError = _dereq_('../error/validation_error');
+var unbundle = _dereq_('../util/unbundle_jsonlint');
+var validateObject = _dereq_('./validate_object');
+var validateFilter = _dereq_('./validate_filter');
+var validatePaintProperty = _dereq_('./validate_paint_property');
+var validateLayoutProperty = _dereq_('./validate_layout_property');
+var extend = _dereq_('../util/extend');
 
 module.exports = function validateLayer(options) {
     var errors = [];
@@ -28013,11 +28013,11 @@ module.exports = function validateLayer(options) {
     return errors;
 };
 
-},{"../error/validation_error":142,"../util/extend":143,"../util/unbundle_jsonlint":145,"./validate_filter":152,"./validate_layout_property":156,"./validate_object":158,"./validate_paint_property":159}],156:[function(require,module,exports){
+},{"../error/validation_error":142,"../util/extend":143,"../util/unbundle_jsonlint":145,"./validate_filter":152,"./validate_layout_property":156,"./validate_object":158,"./validate_paint_property":159}],156:[function(_dereq_,module,exports){
 'use strict';
 
-var validate = require('./validate');
-var ValidationError = require('../error/validation_error');
+var validate = _dereq_('./validate');
+var ValidationError = _dereq_('../error/validation_error');
 
 module.exports = function validateLayoutProperty(options) {
     var key = options.key;
@@ -28052,11 +28052,11 @@ module.exports = function validateLayoutProperty(options) {
 
 };
 
-},{"../error/validation_error":142,"./validate":146}],157:[function(require,module,exports){
+},{"../error/validation_error":142,"./validate":146}],157:[function(_dereq_,module,exports){
 'use strict';
 
-var getType = require('../util/get_type');
-var ValidationError = require('../error/validation_error');
+var getType = _dereq_('../util/get_type');
+var ValidationError = _dereq_('../error/validation_error');
 
 module.exports = function validateNumber(options) {
     var key = options.key;
@@ -28079,12 +28079,12 @@ module.exports = function validateNumber(options) {
     return [];
 };
 
-},{"../error/validation_error":142,"../util/get_type":144}],158:[function(require,module,exports){
+},{"../error/validation_error":142,"../util/get_type":144}],158:[function(_dereq_,module,exports){
 'use strict';
 
-var ValidationError = require('../error/validation_error');
-var getType = require('../util/get_type');
-var validate = require('./validate');
+var ValidationError = _dereq_('../error/validation_error');
+var getType = _dereq_('../util/get_type');
+var validate = _dereq_('./validate');
 
 module.exports = function validateObject(options) {
     var key = options.key;
@@ -28132,11 +28132,11 @@ module.exports = function validateObject(options) {
     return errors;
 };
 
-},{"../error/validation_error":142,"../util/get_type":144,"./validate":146}],159:[function(require,module,exports){
+},{"../error/validation_error":142,"../util/get_type":144,"./validate":146}],159:[function(_dereq_,module,exports){
 'use strict';
 
-var validate = require('./validate');
-var ValidationError = require('../error/validation_error');
+var validate = _dereq_('./validate');
+var ValidationError = _dereq_('../error/validation_error');
 
 module.exports = function validatePaintProperty(options) {
     var key = options.key;
@@ -28172,13 +28172,13 @@ module.exports = function validatePaintProperty(options) {
 
 };
 
-},{"../error/validation_error":142,"./validate":146}],160:[function(require,module,exports){
+},{"../error/validation_error":142,"./validate":146}],160:[function(_dereq_,module,exports){
 'use strict';
 
-var ValidationError = require('../error/validation_error');
-var unbundle = require('../util/unbundle_jsonlint');
-var validateObject = require('./validate_object');
-var validateEnum = require('./validate_enum');
+var ValidationError = _dereq_('../error/validation_error');
+var unbundle = _dereq_('../util/unbundle_jsonlint');
+var validateObject = _dereq_('./validate_object');
+var validateEnum = _dereq_('./validate_enum');
 
 module.exports = function validateSource(options) {
     var value = options.value;
@@ -28249,11 +28249,11 @@ module.exports = function validateSource(options) {
     }
 };
 
-},{"../error/validation_error":142,"../util/unbundle_jsonlint":145,"./validate_enum":151,"./validate_object":158}],161:[function(require,module,exports){
+},{"../error/validation_error":142,"../util/unbundle_jsonlint":145,"./validate_enum":151,"./validate_object":158}],161:[function(_dereq_,module,exports){
 'use strict';
 
-var getType = require('../util/get_type');
-var ValidationError = require('../error/validation_error');
+var getType = _dereq_('../util/get_type');
+var ValidationError = _dereq_('../error/validation_error');
 
 module.exports = function validateString(options) {
     var value = options.value;
@@ -28267,13 +28267,13 @@ module.exports = function validateString(options) {
     return [];
 };
 
-},{"../error/validation_error":142,"../util/get_type":144}],162:[function(require,module,exports){
+},{"../error/validation_error":142,"../util/get_type":144}],162:[function(_dereq_,module,exports){
 'use strict';
 
-var validateConstants = require('./validate/validate_constants');
-var validate = require('./validate/validate');
-var latestStyleSpec = require('../reference/latest.min');
-var validateGlyphsURL = require('./validate/validate_glyphs_url');
+var validateConstants = _dereq_('./validate/validate_constants');
+var validate = _dereq_('./validate/validate');
+var latestStyleSpec = _dereq_('../reference/latest.min');
+var validateGlyphsURL = _dereq_('./validate/validate_glyphs_url');
 
 /**
  * Validate a Mapbox GL style against the style specification. This entrypoint,
@@ -28317,11 +28317,11 @@ function validateStyleMin(style, styleSpec) {
     return sortErrors(errors);
 }
 
-validateStyleMin.source = wrapCleanErrors(require('./validate/validate_source'));
-validateStyleMin.layer = wrapCleanErrors(require('./validate/validate_layer'));
-validateStyleMin.filter = wrapCleanErrors(require('./validate/validate_filter'));
-validateStyleMin.paintProperty = wrapCleanErrors(require('./validate/validate_paint_property'));
-validateStyleMin.layoutProperty = wrapCleanErrors(require('./validate/validate_layout_property'));
+validateStyleMin.source = wrapCleanErrors(_dereq_('./validate/validate_source'));
+validateStyleMin.layer = wrapCleanErrors(_dereq_('./validate/validate_layer'));
+validateStyleMin.filter = wrapCleanErrors(_dereq_('./validate/validate_filter'));
+validateStyleMin.paintProperty = wrapCleanErrors(_dereq_('./validate/validate_paint_property'));
+validateStyleMin.layoutProperty = wrapCleanErrors(_dereq_('./validate/validate_layout_property'));
 
 function sortErrors(errors) {
     return [].concat(errors).sort(function (a, b) {
@@ -28337,13 +28337,13 @@ function wrapCleanErrors(inner) {
 
 module.exports = validateStyleMin;
 
-},{"../reference/latest.min":164,"./validate/validate":146,"./validate/validate_constants":150,"./validate/validate_filter":152,"./validate/validate_glyphs_url":154,"./validate/validate_layer":155,"./validate/validate_layout_property":156,"./validate/validate_paint_property":159,"./validate/validate_source":160}],163:[function(require,module,exports){
-module.exports = require('./v8.json');
+},{"../reference/latest.min":164,"./validate/validate":146,"./validate/validate_constants":150,"./validate/validate_filter":152,"./validate/validate_glyphs_url":154,"./validate/validate_layer":155,"./validate/validate_layout_property":156,"./validate/validate_paint_property":159,"./validate/validate_source":160}],163:[function(_dereq_,module,exports){
+module.exports = _dereq_('./v8.json');
 
-},{"./v8.json":165}],164:[function(require,module,exports){
-module.exports = require('./v8.min.json');
+},{"./v8.json":165}],164:[function(_dereq_,module,exports){
+module.exports = _dereq_('./v8.min.json');
 
-},{"./v8.min.json":166}],165:[function(require,module,exports){
+},{"./v8.min.json":166}],165:[function(_dereq_,module,exports){
 module.exports={
   "$version": 8,
   "$root": {
@@ -29742,9 +29742,9 @@ module.exports={
   }
 }
 
-},{}],166:[function(require,module,exports){
+},{}],166:[function(_dereq_,module,exports){
 module.exports={"$version":8,"$root":{"version":{"required":true,"type":"enum","values":[8]},"name":{"type":"string"},"metadata":{"type":"*"},"center":{"type":"array","value":"number"},"zoom":{"type":"number"},"bearing":{"type":"number","default":0,"period":360,"units":"degrees"},"pitch":{"type":"number","default":0,"units":"degrees"},"sources":{"required":true,"type":"sources"},"sprite":{"type":"string"},"glyphs":{"type":"string"},"transition":{"type":"transition"},"layers":{"required":true,"type":"array","value":"layer"}},"sources":{"*":{"type":"source"}},"source":["source_tile","source_geojson","source_video","source_image"],"source_tile":{"type":{"required":true,"type":"enum","values":["vector","raster"]},"url":{"type":"string"},"tiles":{"type":"array","value":"string"},"minzoom":{"type":"number","default":0},"maxzoom":{"type":"number","default":22},"tileSize":{"type":"number","default":512,"units":"pixels"},"*":{"type":"*"}},"source_geojson":{"type":{"required":true,"type":"enum","values":["geojson"]},"data":{"type":"*"},"maxzoom":{"type":"number","default":14},"buffer":{"type":"number","default":64},"tolerance":{"type":"number","default":3},"cluster":{"type":"boolean","default":false},"clusterRadius":{"type":"number","default":400},"clusterMaxZoom":{"type":"number"}},"source_video":{"type":{"required":true,"type":"enum","values":["video"]},"urls":{"required":true,"type":"array","value":"string"},"coordinates":{"required":true,"type":"array","length":4,"value":{"type":"array","length":2,"value":"number"}}},"source_image":{"type":{"required":true,"type":"enum","values":["image"]},"url":{"required":true,"type":"string"},"coordinates":{"required":true,"type":"array","length":4,"value":{"type":"array","length":2,"value":"number"}}},"layer":{"id":{"type":"string","required":true},"type":{"type":"enum","values":["fill","line","symbol","circle","raster","background"]},"metadata":{"type":"*"},"ref":{"type":"string"},"source":{"type":"string"},"source-layer":{"type":"string"},"minzoom":{"type":"number","minimum":0,"maximum":22},"maxzoom":{"type":"number","minimum":0,"maximum":22},"interactive":{"type":"boolean","default":false},"filter":{"type":"filter"},"layout":{"type":"layout"},"paint":{"type":"paint"},"paint.*":{"type":"paint"}},"layout":["layout_fill","layout_line","layout_circle","layout_symbol","layout_raster","layout_background"],"layout_background":{"visibility":{"type":"enum","function":"piecewise-constant","values":["visible","none"],"default":"visible"}},"layout_fill":{"visibility":{"type":"enum","function":"piecewise-constant","values":["visible","none"],"default":"visible"}},"layout_circle":{"visibility":{"type":"enum","function":"piecewise-constant","values":["visible","none"],"default":"visible"}},"layout_line":{"line-cap":{"type":"enum","function":"piecewise-constant","values":["butt","round","square"],"default":"butt"},"line-join":{"type":"enum","function":"piecewise-constant","values":["bevel","round","miter"],"default":"miter"},"line-miter-limit":{"type":"number","default":2,"function":"interpolated","requires":[{"line-join":"miter"}]},"line-round-limit":{"type":"number","default":1.05,"function":"interpolated","requires":[{"line-join":"round"}]},"visibility":{"type":"enum","function":"piecewise-constant","values":["visible","none"],"default":"visible"}},"layout_symbol":{"symbol-placement":{"type":"enum","function":"piecewise-constant","values":["point","line"],"default":"point"},"symbol-spacing":{"type":"number","default":250,"minimum":1,"function":"interpolated","units":"pixels","requires":[{"symbol-placement":"line"}]},"symbol-avoid-edges":{"type":"boolean","function":"piecewise-constant","default":false},"icon-allow-overlap":{"type":"boolean","function":"piecewise-constant","default":false,"requires":["icon-image"]},"icon-ignore-placement":{"type":"boolean","function":"piecewise-constant","default":false,"requires":["icon-image"]},"icon-optional":{"type":"boolean","function":"piecewise-constant","default":false,"requires":["icon-image","text-field"]},"icon-rotation-alignment":{"type":"enum","function":"piecewise-constant","values":["map","viewport"],"default":"viewport","requires":["icon-image"]},"icon-size":{"type":"number","default":1,"minimum":0,"function":"interpolated","requires":["icon-image"]},"icon-image":{"type":"string","function":"piecewise-constant","tokens":true},"icon-rotate":{"type":"number","default":0,"period":360,"function":"interpolated","units":"degrees","requires":["icon-image"]},"icon-padding":{"type":"number","default":2,"minimum":0,"function":"interpolated","units":"pixels","requires":["icon-image"]},"icon-keep-upright":{"type":"boolean","function":"piecewise-constant","default":false,"requires":["icon-image",{"icon-rotation-alignment":"map"},{"symbol-placement":"line"}]},"icon-offset":{"type":"array","value":"number","length":2,"default":[0,0],"function":"interpolated","requires":["icon-image"]},"text-rotation-alignment":{"type":"enum","function":"piecewise-constant","values":["map","viewport"],"default":"viewport","requires":["text-field"]},"text-field":{"type":"string","function":"piecewise-constant","default":"","tokens":true},"text-font":{"type":"array","value":"string","function":"piecewise-constant","default":["Open Sans Regular","Arial Unicode MS Regular"],"requires":["text-field"]},"text-size":{"type":"number","default":16,"minimum":0,"units":"pixels","function":"interpolated","requires":["text-field"]},"text-max-width":{"type":"number","default":10,"minimum":0,"units":"em","function":"interpolated","requires":["text-field"]},"text-line-height":{"type":"number","default":1.2,"units":"em","function":"interpolated","requires":["text-field"]},"text-letter-spacing":{"type":"number","default":0,"units":"em","function":"interpolated","requires":["text-field"]},"text-justify":{"type":"enum","function":"piecewise-constant","values":["left","center","right"],"default":"center","requires":["text-field"]},"text-anchor":{"type":"enum","function":"piecewise-constant","values":["center","left","right","top","bottom","top-left","top-right","bottom-left","bottom-right"],"default":"center","requires":["text-field"]},"text-max-angle":{"type":"number","default":45,"units":"degrees","function":"interpolated","requires":["text-field",{"symbol-placement":"line"}]},"text-rotate":{"type":"number","default":0,"period":360,"units":"degrees","function":"interpolated","requires":["text-field"]},"text-padding":{"type":"number","default":2,"minimum":0,"units":"pixels","function":"interpolated","requires":["text-field"]},"text-keep-upright":{"type":"boolean","function":"piecewise-constant","default":true,"requires":["text-field",{"text-rotation-alignment":"map"},{"symbol-placement":"line"}]},"text-transform":{"type":"enum","function":"piecewise-constant","values":["none","uppercase","lowercase"],"default":"none","requires":["text-field"]},"text-offset":{"type":"array","value":"number","units":"ems","function":"interpolated","length":2,"default":[0,0],"requires":["text-field"]},"text-allow-overlap":{"type":"boolean","function":"piecewise-constant","default":false,"requires":["text-field"]},"text-ignore-placement":{"type":"boolean","function":"piecewise-constant","default":false,"requires":["text-field"]},"text-optional":{"type":"boolean","function":"piecewise-constant","default":false,"requires":["text-field","icon-image"]},"visibility":{"type":"enum","function":"piecewise-constant","values":["visible","none"],"default":"visible"}},"layout_raster":{"visibility":{"type":"enum","function":"piecewise-constant","values":["visible","none"],"default":"visible"}},"filter":{"type":"array","value":"*"},"filter_operator":{"type":"enum","values":["==","!=",">",">=","<","<=","in","!in","all","any","none","has","!has"]},"geometry_type":{"type":"enum","values":["Point","LineString","Polygon"]},"color_operation":{"type":"enum","values":["lighten","saturate","spin","fade","mix"]},"function":{"stops":{"type":"array","required":true,"value":"function_stop"},"base":{"type":"number","default":1,"minimum":0},"property":{"type":"string","default":"$zoom"},"type":{"type":"enum","values":["exponential","interval","categorical"],"default":"exponential"}},"function_stop":{"type":"array","minimum":0,"maximum":22,"value":["number","color"],"length":2},"paint":["paint_fill","paint_line","paint_circle","paint_symbol","paint_raster","paint_background"],"paint_fill":{"fill-antialias":{"type":"boolean","function":"piecewise-constant","default":true},"fill-opacity":{"type":"number","function":"interpolated","default":1,"minimum":0,"maximum":1,"transition":true},"fill-color":{"type":"color","default":"#000000","function":"interpolated","transition":true,"requires":[{"!":"fill-pattern"}]},"fill-outline-color":{"type":"color","function":"interpolated","transition":true,"requires":[{"!":"fill-pattern"},{"fill-antialias":true}]},"fill-translate":{"type":"array","value":"number","length":2,"default":[0,0],"function":"interpolated","transition":true,"units":"pixels"},"fill-translate-anchor":{"type":"enum","function":"piecewise-constant","values":["map","viewport"],"default":"map","requires":["fill-translate"]},"fill-pattern":{"type":"string","function":"piecewise-constant","transition":true}},"paint_line":{"line-opacity":{"type":"number","function":"interpolated","default":1,"minimum":0,"maximum":1,"transition":true},"line-color":{"type":"color","default":"#000000","function":"interpolated","transition":true,"requires":[{"!":"line-pattern"}]},"line-translate":{"type":"array","value":"number","length":2,"default":[0,0],"function":"interpolated","transition":true,"units":"pixels"},"line-translate-anchor":{"type":"enum","function":"piecewise-constant","values":["map","viewport"],"default":"map","requires":["line-translate"]},"line-width":{"type":"number","default":1,"minimum":0,"function":"interpolated","transition":true,"units":"pixels"},"line-gap-width":{"type":"number","default":0,"minimum":0,"function":"interpolated","transition":true,"units":"pixels"},"line-offset":{"type":"number","default":0,"function":"interpolated","transition":true,"units":"pixels"},"line-blur":{"type":"number","default":0,"minimum":0,"function":"interpolated","transition":true,"units":"pixels"},"line-dasharray":{"type":"array","value":"number","function":"piecewise-constant","minimum":0,"transition":true,"units":"line widths","requires":[{"!":"line-pattern"}]},"line-pattern":{"type":"string","function":"piecewise-constant","transition":true}},"paint_circle":{"circle-radius":{"type":"number","default":5,"minimum":0,"function":"interpolated","transition":true,"units":"pixels"},"circle-color":{"type":"color","default":"#000000","function":"interpolated","transition":true},"circle-blur":{"type":"number","default":0,"function":"interpolated","transition":true},"circle-opacity":{"type":"number","default":1,"minimum":0,"maximum":1,"function":"interpolated","transition":true},"circle-translate":{"type":"array","value":"number","length":2,"default":[0,0],"function":"interpolated","transition":true,"units":"pixels"},"circle-translate-anchor":{"type":"enum","function":"piecewise-constant","values":["map","viewport"],"default":"map","requires":["circle-translate"]}},"paint_symbol":{"icon-opacity":{"type":"number","default":1,"minimum":0,"maximum":1,"function":"interpolated","transition":true,"requires":["icon-image"]},"icon-color":{"type":"color","default":"#000000","function":"interpolated","transition":true,"requires":["icon-image"]},"icon-halo-color":{"type":"color","default":"rgba(0, 0, 0, 0)","function":"interpolated","transition":true,"requires":["icon-image"]},"icon-halo-width":{"type":"number","default":0,"minimum":0,"function":"interpolated","transition":true,"units":"pixels","requires":["icon-image"]},"icon-halo-blur":{"type":"number","default":0,"minimum":0,"function":"interpolated","transition":true,"units":"pixels","requires":["icon-image"]},"icon-translate":{"type":"array","value":"number","length":2,"default":[0,0],"function":"interpolated","transition":true,"units":"pixels","requires":["icon-image"]},"icon-translate-anchor":{"type":"enum","function":"piecewise-constant","values":["map","viewport"],"default":"map","requires":["icon-image","icon-translate"]},"text-opacity":{"type":"number","default":1,"minimum":0,"maximum":1,"function":"interpolated","transition":true,"requires":["text-field"]},"text-color":{"type":"color","default":"#000000","function":"interpolated","transition":true,"requires":["text-field"]},"text-halo-color":{"type":"color","default":"rgba(0, 0, 0, 0)","function":"interpolated","transition":true,"requires":["text-field"]},"text-halo-width":{"type":"number","default":0,"minimum":0,"function":"interpolated","transition":true,"units":"pixels","requires":["text-field"]},"text-halo-blur":{"type":"number","default":0,"minimum":0,"function":"interpolated","transition":true,"units":"pixels","requires":["text-field"]},"text-translate":{"type":"array","value":"number","length":2,"default":[0,0],"function":"interpolated","transition":true,"units":"pixels","requires":["text-field"]},"text-translate-anchor":{"type":"enum","function":"piecewise-constant","values":["map","viewport"],"default":"map","requires":["text-field","text-translate"]}},"paint_raster":{"raster-opacity":{"type":"number","default":1,"minimum":0,"maximum":1,"function":"interpolated","transition":true},"raster-hue-rotate":{"type":"number","default":0,"period":360,"function":"interpolated","transition":true,"units":"degrees"},"raster-brightness-min":{"type":"number","function":"interpolated","default":0,"minimum":0,"maximum":1,"transition":true},"raster-brightness-max":{"type":"number","function":"interpolated","default":1,"minimum":0,"maximum":1,"transition":true},"raster-saturation":{"type":"number","default":0,"minimum":-1,"maximum":1,"function":"interpolated","transition":true},"raster-contrast":{"type":"number","default":0,"minimum":-1,"maximum":1,"function":"interpolated","transition":true},"raster-fade-duration":{"type":"number","default":300,"minimum":0,"function":"interpolated","transition":true,"units":"milliseconds"}},"paint_background":{"background-color":{"type":"color","default":"#000000","function":"interpolated","transition":true,"requires":[{"!":"background-pattern"}]},"background-pattern":{"type":"string","function":"piecewise-constant","transition":true},"background-opacity":{"type":"number","default":1,"minimum":0,"maximum":1,"function":"interpolated","transition":true}},"transition":{"duration":{"type":"number","default":300,"minimum":0,"units":"milliseconds"},"delay":{"type":"number","default":0,"minimum":0,"units":"milliseconds"}}}
-},{}],167:[function(require,module,exports){
+},{}],167:[function(_dereq_,module,exports){
 'use strict';
 
 // lightweight Buffer shim for pbf browser build
@@ -29752,7 +29752,7 @@ module.exports={"$version":8,"$root":{"version":{"required":true,"type":"enum","
 
 module.exports = Buffer;
 
-var ieee754 = require('ieee754');
+var ieee754 = _dereq_('ieee754');
 
 var BufferMethods;
 
@@ -29905,13 +29905,13 @@ function encodeString(str) {
     return bytes;
 }
 
-},{"ieee754":169}],168:[function(require,module,exports){
+},{"ieee754":169}],168:[function(_dereq_,module,exports){
 (function (global){
 'use strict';
 
 module.exports = Pbf;
 
-var Buffer = global.Buffer || require('./buffer');
+var Buffer = global.Buffer || _dereq_('./buffer');
 
 function Pbf(buf) {
     this.buf = !Buffer.isBuffer(buf) ? new Buffer(buf || 0) : buf;
@@ -30332,7 +30332,7 @@ function writePackedSFixed64(arr, pbf) { for (var i = 0; i < arr.length; i++) pb
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 
-},{"./buffer":167}],169:[function(require,module,exports){
+},{"./buffer":167}],169:[function(_dereq_,module,exports){
 exports.read = function (buffer, offset, isLE, mLen, nBytes) {
   var e, m
   var eLen = nBytes * 8 - mLen - 1
@@ -30418,7 +30418,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
   buffer[offset + i - d] |= s * 128
 }
 
-},{}],170:[function(require,module,exports){
+},{}],170:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = Point;
@@ -30551,7 +30551,7 @@ Point.convert = function (a) {
     return a;
 };
 
-},{}],171:[function(require,module,exports){
+},{}],171:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = partialSort;
@@ -30613,7 +30613,7 @@ function defaultCompare(a, b) {
     return a < b ? -1 : a > b ? 1 : 0;
 }
 
-},{}],172:[function(require,module,exports){
+},{}],172:[function(_dereq_,module,exports){
 // Copyright 2014 Simon Lydell
 // X11 (“MIT”) Licensed. (See LICENSE.)
 
@@ -30662,7 +30662,7 @@ void (function(root, factory) {
 
 }));
 
-},{}],173:[function(require,module,exports){
+},{}],173:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = ShelfPack;
@@ -30905,10 +30905,10 @@ Shelf.prototype.resize = function(w) {
     return true;
 };
 
-},{}],174:[function(require,module,exports){
+},{}],174:[function(_dereq_,module,exports){
 'use strict';
 
-var kdbush = require('kdbush');
+var kdbush = _dereq_('kdbush');
 
 module.exports = supercluster;
 
@@ -31120,12 +31120,12 @@ function getY(p) {
     return p.y;
 }
 
-},{"kdbush":175}],175:[function(require,module,exports){
+},{"kdbush":175}],175:[function(_dereq_,module,exports){
 'use strict';
 
-var sort = require('./sort');
-var range = require('./range');
-var within = require('./within');
+var sort = _dereq_('./sort');
+var range = _dereq_('./range');
+var within = _dereq_('./within');
 
 module.exports = kdbush;
 
@@ -31166,7 +31166,7 @@ KDBush.prototype = {
 function defaultGetX(p) { return p[0]; }
 function defaultGetY(p) { return p[1]; }
 
-},{"./range":176,"./sort":177,"./within":178}],176:[function(require,module,exports){
+},{"./range":176,"./sort":177,"./within":178}],176:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = range;
@@ -31214,7 +31214,7 @@ function range(ids, coords, minX, minY, maxX, maxY, nodeSize) {
     return result;
 }
 
-},{}],177:[function(require,module,exports){
+},{}],177:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = sortKD;
@@ -31282,7 +31282,7 @@ function swap(arr, i, j) {
     arr[j] = tmp;
 }
 
-},{}],178:[function(require,module,exports){
+},{}],178:[function(_dereq_,module,exports){
 'use strict';
 
 module.exports = within;
@@ -31334,7 +31334,7 @@ function sqDist(ax, ay, bx, by) {
     return dx * dx + dy * dy;
 }
 
-},{}],179:[function(require,module,exports){
+},{}],179:[function(_dereq_,module,exports){
 /*
  * Copyright (C) 2008 Apple Inc. All Rights Reserved.
  *
@@ -31441,15 +31441,15 @@ UnitBezier.prototype.solve = function(x, epsilon) {
     return this.sampleCurveY(this.solveCurveX(x, epsilon));
 };
 
-},{}],180:[function(require,module,exports){
-module.exports.VectorTile = require('./lib/vectortile.js');
-module.exports.VectorTileFeature = require('./lib/vectortilefeature.js');
-module.exports.VectorTileLayer = require('./lib/vectortilelayer.js');
+},{}],180:[function(_dereq_,module,exports){
+module.exports.VectorTile = _dereq_('./lib/vectortile.js');
+module.exports.VectorTileFeature = _dereq_('./lib/vectortilefeature.js');
+module.exports.VectorTileLayer = _dereq_('./lib/vectortilelayer.js');
 
-},{"./lib/vectortile.js":181,"./lib/vectortilefeature.js":182,"./lib/vectortilelayer.js":183}],181:[function(require,module,exports){
+},{"./lib/vectortile.js":181,"./lib/vectortilefeature.js":182,"./lib/vectortilelayer.js":183}],181:[function(_dereq_,module,exports){
 'use strict';
 
-var VectorTileLayer = require('./vectortilelayer');
+var VectorTileLayer = _dereq_('./vectortilelayer');
 
 module.exports = VectorTile;
 
@@ -31465,10 +31465,10 @@ function readTile(tag, layers, pbf) {
 }
 
 
-},{"./vectortilelayer":183}],182:[function(require,module,exports){
+},{"./vectortilelayer":183}],182:[function(_dereq_,module,exports){
 'use strict';
 
-var Point = require('point-geometry');
+var Point = _dereq_('point-geometry');
 
 module.exports = VectorTileFeature;
 
@@ -31700,10 +31700,10 @@ function signedArea(ring) {
     return sum;
 }
 
-},{"point-geometry":170}],183:[function(require,module,exports){
+},{"point-geometry":170}],183:[function(_dereq_,module,exports){
 'use strict';
 
-var VectorTileFeature = require('./vectortilefeature.js');
+var VectorTileFeature = _dereq_('./vectortilefeature.js');
 
 module.exports = VectorTileLayer;
 
@@ -31763,10 +31763,10 @@ VectorTileLayer.prototype.feature = function(i) {
     return new VectorTileFeature(this._pbf, end, this.extent, this._keys, this._values);
 };
 
-},{"./vectortilefeature.js":182}],184:[function(require,module,exports){
-var Pbf = require('pbf')
-var vtpb = require('./vector-tile-pb')
-var GeoJSONWrapper = require('./lib/geojson_wrapper')
+},{"./vectortilefeature.js":182}],184:[function(_dereq_,module,exports){
+var Pbf = _dereq_('pbf')
+var vtpb = _dereq_('./vector-tile-pb')
+var GeoJSONWrapper = _dereq_('./lib/geojson_wrapper')
 
 module.exports = fromVectorTileJs
 module.exports.fromVectorTileJs = fromVectorTileJs
@@ -31918,11 +31918,11 @@ function wrapValue (value) {
   return result
 }
 
-},{"./lib/geojson_wrapper":185,"./vector-tile-pb":186,"pbf":168}],185:[function(require,module,exports){
+},{"./lib/geojson_wrapper":185,"./vector-tile-pb":186,"pbf":168}],185:[function(_dereq_,module,exports){
 'use strict'
 
-var Point = require('point-geometry')
-var VectorTileFeature = require('vector-tile').VectorTileFeature
+var Point = _dereq_('point-geometry')
+var VectorTileFeature = _dereq_('vector-tile').VectorTileFeature
 
 module.exports = GeoJSONWrapper
 
@@ -31985,7 +31985,7 @@ FeatureWrapper.prototype.bbox = function () {
 
 FeatureWrapper.prototype.toGeoJSON = VectorTileFeature.prototype.toGeoJSON
 
-},{"point-geometry":170,"vector-tile":180}],186:[function(require,module,exports){
+},{"point-geometry":170,"vector-tile":180}],186:[function(_dereq_,module,exports){
 'use strict';
 
 // tile ========================================
@@ -32091,7 +32091,7 @@ function writeLayer(layer, pbf) {
     if (layer.extent !== undefined) pbf.writeVarintField(5, layer.extent);
 }
 
-},{}],187:[function(require,module,exports){
+},{}],187:[function(_dereq_,module,exports){
 var bundleFn = arguments[3];
 var sources = arguments[4];
 var cache = arguments[5];
@@ -32162,7 +32162,7 @@ module.exports = function (fn, options) {
     return worker;
 };
 
-},{}],188:[function(require,module,exports){
+},{}],188:[function(_dereq_,module,exports){
 'use strict';
 
 /**
