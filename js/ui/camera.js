@@ -286,6 +286,8 @@ util.extend(Camera.prototype, /** @lends Map.prototype */{
 
         options = util.extend({
             padding: 0,
+            paddingLeftRight: 0,
+            paddingTopBottom: 0,
             offset: [0, 0],
             maxZoom: Infinity
         }, options);
@@ -297,8 +299,8 @@ util.extend(Camera.prototype, /** @lends Map.prototype */{
             nw = tr.project(bounds.getNorthWest()),
             se = tr.project(bounds.getSouthEast()),
             size = se.sub(nw),
-            scaleX = (tr.width - options.padding * 2 - Math.abs(offset.x) * 2) / size.x,
-            scaleY = (tr.height - options.padding * 2 - Math.abs(offset.y) * 2) / size.y;
+            scaleX = (tr.width - (options.padding+options.paddingLeftRight) * 2 - Math.abs(offset.x) * 2) / size.x,
+            scaleY = (tr.height - (options.padding+options.paddingTopBottom) * 2 - Math.abs(offset.y) * 2) / size.y;
 
         options.center = tr.unproject(nw.add(se).div(2));
         options.zoom = Math.min(tr.scaleZoom(tr.scale * Math.min(scaleX, scaleY)), options.maxZoom);
